@@ -4,14 +4,24 @@ version = "0.1.0"
 description = "Create controlled improvisors to control aiger circuits."
 authors = ["Marcell Vazquez-Chanlatte <mvc@linux.com>"]
 license = "MIT"
+packages = [
+    { include = "aiger_improv"},
+]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-mdd = "^0.2.0"
+mdd = "^0.3.0"
 py-aiger-bdd = "^3.0.0"
 py-aiger-bv = "^4.3.1"
+attrs = "^20.2.0"
+py-aiger = "^6.1.2"
+py-aiger-discrete = "^0.1.3"
+numpy = "^1.19.2"
+py-aiger-coins = "^3.0.0"
 
 [tool.poetry.dev-dependencies]
+pytest = "^6.0.2"
+pytest-flake8 = "^1.0.6"
 
 [build-system]
 requires = ["poetry>=0.12"]
