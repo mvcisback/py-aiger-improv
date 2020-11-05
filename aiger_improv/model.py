@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-from typing import Callable, Sequence
+from typing import Callable, Sequence, Optional
 
 
 import attr
@@ -14,6 +14,7 @@ import funcy as fn
 from aiger_coins.pcirc import Distribution
 from aiger_discrete import FiniteFunc
 from aiger_discrete.mdd import to_mdd
+from mdd.nx import to_nx
 from pyrsistent import pmap
 from pyrsistent.typing import PMap
 
@@ -32,25 +33,44 @@ class Model:
     mdd: mdd.DecisionDiagram
     order: Sequence[str]
     preimage: Callable[[BV.UnsignedBVExpr], BV.UnsignedBVExpr]
-    coin_biases: Callable[[str], Sequence[float]]  # Biases of a given input.
+    coin_biases: Callable[[str], Optional[Sequence[float]]]
 
     @property
     def true_sym(self):
-        return self.mdd.interface.output.decode(1)
+        return self.mdd.interface.output.decode(True)
 
     @property
     def false_sym(self):
-        return self.mdd.interface.output.decode(0)
+        return self.mdd.interface.output.decode(False)
 
     def override(self, expr, is_sat: bool=True):
         """Change satisfaction label of feature closure of expr."""
-        expr = self.preimage(expr)
+        preimg = self.preimage(expr)
         label = self.true_sym if is_sat else self.false_sym
-        model = self.model.override(expr, label)
-        return attr.evolve(self, model=model)
+        return attr.evolve(self, mdd=self.mdd.override(preimg, label))
 
     def is_coin(self, name):
-        return self.coin_biases(name) != ()
+        return self.coin_biases(name) is not None
+
+    def graph(self):
+        return to_nx(self.mdd, reindex=False)
+
+
+def onehot_gadget(output: str):
+    sat = BV.uatom(1, output)
+    false, true = BV.uatom(2, 0b01), BV.uatom(2, 0b10)
+    expr = BV.ite(sat, true, false) \
+             .with_output('sat')
+    
+    encoder = D.Encoding(
+        encode=lambda x: 1 << x,
+        decode=lambda x: (x >> 1) & 1,
+    )
+
+    return D.from_aigbv(
+        expr.aigbv,
+        output_encodings={'sat': encoder},
+    )
 
 
 def from_pcirc(dyn: C.PCirc, monitor, steps: int):
@@ -60,6 +80,7 @@ def from_pcirc(dyn: C.PCirc, monitor, steps: int):
     monitor = dyn >> monitor
     if len(monitor.outputs) != 1:
         raise ValueError("Only support single output monitors at the moment.")
+    monitor >>= onehot_gadget(fn.first(monitor.outputs))
 
     unrolled_d: FiniteFunc = dyn.circ.unroll(steps)
     unrolled_m: FiniteFunc = monitor.circ.unroll(steps, only_last_outputs=True)
@@ -86,6 +107,7 @@ def from_pcirc(dyn: C.PCirc, monitor, steps: int):
 
         preimg = (unrolled_d >> circ).aigbv >> (sat & valid).aigbv
         assert preimg.inputs == unrolled_d.inputs
+
         return BV.UnsignedBVExpr(preimg)
 
     mdd = to_mdd(unrolled_m, order=causal_order)
@@ -97,3 +119,6 @@ def from_pcirc(dyn: C.PCirc, monitor, steps: int):
         coin_biases=coin_biases,
         order=causal_order,
     )
+
+
+__all__ = ['Model', 'from_pcirc']

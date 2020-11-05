@@ -10,12 +10,12 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-mdd = "^0.3.3"
+mdd = "^0.3.4"
 py-aiger-bdd = "^3.0.0"
-py-aiger-bv = "^4.5.0"
+py-aiger-bv = "^4.5.1"
 attrs = "^20.2.0"
 py-aiger = "^6.1.5"
-py-aiger-discrete = "^0.1.5"
+py-aiger-discrete = "^0.1.6"
 numpy = "^1.19.2"
 py-aiger-coins = "^3.0.0"
 
