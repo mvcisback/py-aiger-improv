@@ -49,8 +49,11 @@ class Model:
         model = self.model.override(expr, label)
         return attr.evolve(self, model=model)
 
+    def is_coin(self, name):
+        return self.coin_biases(name) != ()
 
-def from_pcirc(dyn: C.PCirc, monitor, steps: int, manager=None):
+
+def from_pcirc(dyn: C.PCirc, monitor, steps: int):
     if dyn.outputs != monitor.inputs:
         raise ValueError("Monitor needs to match dynamics interface!")
 
@@ -62,7 +65,7 @@ def from_pcirc(dyn: C.PCirc, monitor, steps: int, manager=None):
     unrolled_m: FiniteFunc = monitor.circ.unroll(steps, only_last_outputs=True)
 
     key = causal_key(monitor.coins_id)
-    causal_order = sorted(unrolled_m.inputs, key=key)
+    causal_order = tuple(sorted(unrolled_m.inputs, key=key))
 
     def coin_biases(name):
         _, is_env = key(name)
@@ -85,9 +88,12 @@ def from_pcirc(dyn: C.PCirc, monitor, steps: int, manager=None):
         assert preimg.inputs == unrolled_d.inputs
         return BV.UnsignedBVExpr(preimg)
 
+    mdd = to_mdd(unrolled_m, order=causal_order)
+    mdd.bdd.bdd.configure(reordering=False)  #  TODO: to_mdd should do this.
+
     return Model(
         preimage=preimage,
-        mdd=to_mdd(unrolled_m, manager=manager),
+        mdd=to_mdd(unrolled_m, order=causal_order),
         coin_biases=coin_biases,
-        order=tuple(causal_order),
+        order=causal_order,
     )
