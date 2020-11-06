@@ -72,6 +72,9 @@ class Model:
         _, time = TIMED_NAME.match(name).groups()
         return int(time)
 
+    @property
+    def actions(self):
+        return [name for name in self.order if not self.is_random(name)]
 
 def onehot_gadget(output: str):
     sat = BV.uatom(1, output)

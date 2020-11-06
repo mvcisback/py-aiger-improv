@@ -4,6 +4,7 @@ import aiger_bdd as B
 import attr
 import networkx as nx
 import numpy as np
+from scipy.special import logsumexp
 
 from aiger_improv.model import Model
 
@@ -18,12 +19,13 @@ class Improviser:
     rationality: float
 
     def values(self):
+        actions = self.model.actions
         value = {}
         graph = self.model.graph()
         for node in nx.topological_sort(graph.reverse()):
             name = graph.nodes[node]['label']
 
-            if isinstance(name, bool):                        # Leaf
+            if isinstance(name, bool):                        # Leaf Case
                 value[node] = float(name) * self.rationality
                 continue
 
@@ -31,21 +33,27 @@ class Improviser:
             values = amap(value.get, kids)
             guards = [graph.edges[node, k]['label'] for k in kids]
 
-            if self.model.is_random(name):                     # Chance
+            if self.model.is_random(name):                    # Chance Case
                 probs = amap(self.model.prob, guards)
-            else:                                              # Decision
-                # Account for # decisions on edge by expanding guards.
-                # Note: This is arguably a bug in the model.
-                decisions = []
-                # TODO: optimize to not depend on length of horizon.
-                for kid, guard in zip(kids, guards):
-                    # TODO guard |= 
-                    decisions.append(guard)
+                value[node] = (probs * values).sum()
+                continue
 
-                curr_time = self.model.time_step(name)
-                skipped = amap(self.model.time_step, kid_names) - curr_time - 1
-                sizes = amap(model.size, guards)
+            # ------------  Decision Case -------------------
 
-                pass
-            
+            # Account for # decisions on edge by expanding guards.
+            # Note: This is arguably a bug in the model.
+            curr_time = self.model.time_step(name)
 
+            decisions = []
+            for kid, guard in zip(kids, guards):
+                kid_time = self.model.time_step(name)
+                skipped = actions[curr_time+1:kid_time]
+                for name in skipped:  # Expand each guard.
+                    guard |= self.model.mdd.io.var(name).valid
+                decisions.append(guard)
+
+            # Apply expanded guard entropy bump.
+            values += np.log(amap(model.size, guards))
+            value[node] = logsumexp(values)
+
+        return value
