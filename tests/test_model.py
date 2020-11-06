@@ -19,7 +19,7 @@ def test_from_pcirc_smoke():
     model = from_pcirc(dyn, monitor, steps=2)
     assert model.coin_biases('sys##time_0') is None
 
-    coins0 = f'{dyn.coins_id}##time_0'
+    coins0 = f'coins##time_0'
     assert model.coin_biases(coins0) == dyn.coin_biases
 
     assert model.mdd({
@@ -87,5 +87,9 @@ def test_from_pcirc_smoke():
     graph2 = model2.graph()
     assert len(graph2) >= len(graph)  # Now need to case split at 0.
 
-    assert not model.is_coin('sys##time_0')
-    assert model.is_coin('coins##time_0')
+    assert not model.is_random('sys##time_0')
+    assert model.is_random('coins##time_0')
+
+    assert model.time_step('foo##time_0') == 0
+    assert model.time_step('foo##time_1') == 1
+    assert model.time_step(False) == 2

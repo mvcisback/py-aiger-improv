@@ -372,7 +372,7 @@ description = "Library for creating circuits that encode discrete distributions.
 name = "py-aiger-coins"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "3.0.0"
+version = "3.0.1"
 
 [package.dependencies]
 attrs = ">=20.0.0,<21.0.0"
@@ -561,7 +561,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=3.5,<3.7.3 || >3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "jaraco.test (>=3.2.0)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [metadata]
-content-hash = "6e61f4304851d419d4ddfbc80b1096777d5797fff2d6ff6dc8db562656389202"
+content-hash = "ed03e234d149ed10d1e2e76e491a1a76aa3f5fbd04637547127ff206266d98f3"
 lock-version = "1.0"
 python-versions = "^3.7"
 
@@ -720,8 +720,8 @@ py-aiger-bv = [
     {file = "py_aiger_bv-4.5.1-py3-none-any.whl", hash = "sha256:cfa1567785f7649761a88635faca77747f222736f2d8b32c568b36c87a274492"},
 ]
 py-aiger-coins = [
-    {file = "py-aiger-coins-3.0.0.tar.gz", hash = "sha256:b899fc39cd3bc3a02a85ccac29095d2e0227a0d4ebbe1a6060dec367eb024cc8"},
-    {file = "py_aiger_coins-3.0.0-py3-none-any.whl", hash = "sha256:fe1d588e5243d58252debd69c4f80cf6a6d29d9f2d02c1f1019602cbe6cbefb6"},
+    {file = "py-aiger-coins-3.0.1.tar.gz", hash = "sha256:d7537999aafdbf8c34d22eac7710d57a84d25b6c3db6491ee7d2fe6df19c333a"},
+    {file = "py_aiger_coins-3.0.1-py3-none-any.whl", hash = "sha256:7ad9078f7e9f03ea82d41eba61cd3ab7167c1d7bdde20991b300441fafac87d2"},
 ]
 py-aiger-discrete = [
     {file = "py-aiger-discrete-0.1.6.tar.gz", hash = "sha256:c1ad980c1577dd8001041a4c8ccba28b57dafd0c589ff509374a1a723915f2d4"},

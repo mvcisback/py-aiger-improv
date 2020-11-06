@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+from functools import reduce
 from typing import Callable, Sequence, Optional
 
 
@@ -34,6 +35,7 @@ class Model:
     order: Sequence[str]
     preimage: Callable[[BV.UnsignedBVExpr], BV.UnsignedBVExpr]
     coin_biases: Callable[[str], Optional[Sequence[float]]]
+    steps: int
 
     @property
     def true_sym(self):
@@ -49,11 +51,26 @@ class Model:
         label = self.true_sym if is_sat else self.false_sym
         return attr.evolve(self, mdd=self.mdd.override(preimg, label))
 
-    def is_coin(self, name):
+    def is_random(self, name):
         return self.coin_biases(name) is not None
 
     def graph(self):
         return to_nx(self.mdd, reindex=False)
+
+    def prob(self, guard):
+        # TODO: apply coin flips.
+        raise NotImplementedError
+
+    def size(self, guard):
+        # TODO: count
+        raise NotImplementedError
+
+    def time_step(self, name):
+        if isinstance(name, bool):
+            return self.steps
+
+        _, time = TIMED_NAME.match(name).groups()
+        return int(time)
 
 
 def onehot_gadget(output: str):
@@ -76,6 +93,9 @@ def onehot_gadget(output: str):
 def from_pcirc(dyn: C.PCirc, monitor, steps: int):
     if dyn.outputs != monitor.inputs:
         raise ValueError("Monitor needs to match dynamics interface!")
+
+    if len(dyn.inputs) != 1:
+        raise NotImplementedError("Currently single input dynamics required.")
 
     monitor = dyn >> monitor
     if len(monitor.outputs) != 1:
@@ -118,6 +138,7 @@ def from_pcirc(dyn: C.PCirc, monitor, steps: int):
         mdd=to_mdd(unrolled_m, order=causal_order),
         coin_biases=coin_biases,
         order=causal_order,
+        steps=steps,
     )
 
 
