@@ -8,8 +8,10 @@ from typing import Callable, Sequence, Optional
 import attr
 import mdd
 import numpy as np
+import aiger_bdd
 import aiger_bv as BV
 import aiger_coins as C
+import aiger_coins.infer
 import aiger_discrete as D
 import funcy as fn
 from aiger_coins.pcirc import Distribution
@@ -57,13 +59,22 @@ class Model:
     def graph(self):
         return to_nx(self.mdd, reindex=False)
 
-    def prob(self, guard):
-        # TODO: apply coin flips.
-        raise NotImplementedError
+    def prob(self, guard, *, log=False):
+        assert all(self.is_random(i) for i in guard.inputs)
+
+        order = list(guard.inputs)
+        guard = guard.bundle_inputs('##coins', order=order)
+        coin_biases = fn.lmapcat(self.coin_biases, order)
+
+        pcirc = C.PCirc(
+            circ=guard.aigbv, 
+            coin_biases=len(order) * coin_biases,
+            coins_id='##coins',
+        )
+        return C.infer.prob(pcirc, log=log)
 
     def size(self, guard):
-        # TODO: count
-        raise NotImplementedError
+        return aiger_bdd.count(guard)
 
     def time_step(self, name):
         if isinstance(name, bool):

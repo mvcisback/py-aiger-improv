@@ -1,5 +1,8 @@
+import pytest
+
 import aiger_bv as BV
 import aiger_coins as C
+import funcy as fn
 
 from aiger_improv.model import from_pcirc
 
@@ -93,3 +96,9 @@ def test_from_pcirc_smoke():
     assert model.time_step('foo##time_0') == 0
     assert model.time_step('foo##time_1') == 1
     assert model.time_step(False) == 2
+
+    guard = fn.first(graph.edges(data=True))[-1]['label']
+    assert model.size(guard) > 0
+
+    expr = model.mdd.io.inputs[1].expr() == 0
+    assert model.prob(expr) == pytest.approx(1/6)

@@ -327,7 +327,7 @@ description = "A python library for manipulating sequential and-inverter gates."
 name = "py-aiger"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "6.1.5"
+version = "6.1.9"
 
 [package.dependencies]
 attrs = ">=20.0.0,<21.0.0"
@@ -335,6 +335,7 @@ bidict = ">=0.21.0,<0.22.0"
 funcy = ">=1.12,<2.0"
 parsimonious = ">=0.8.1,<0.9.0"
 pyrsistent = ">=0.17.0,<0.18.0"
+sortedcontainers = ">=2.3.0,<3.0.0"
 toposort = ">=1.5,<2.0"
 
 [[package]]
@@ -372,7 +373,7 @@ description = "Library for creating circuits that encode discrete distributions.
 name = "py-aiger-coins"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "3.0.1"
+version = "3.1.0"
 
 [package.dependencies]
 attrs = ">=20.0.0,<21.0.0"
@@ -382,7 +383,7 @@ py-aiger-bv = ">=4.4.0,<5.0.0"
 py-aiger-discrete = ">=0.1.2,<0.2.0"
 
 [package.extras]
-bdd = ["py-aiger-bdd (>=3.0.0,<4.0.0)"]
+bdd = ["py-aiger-bdd (>=3.0.0,<4.0.0)", "mdd (>=0.3.4,<0.4.0)", "numpy (>=1.19.4,<2.0.0)"]
 sat = ["py-aiger-sat (>=3.0.4,<4.0.0)"]
 
 [[package]]
@@ -533,6 +534,14 @@ version = "1.15.0"
 
 [[package]]
 category = "main"
+description = "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set"
+name = "sortedcontainers"
+optional = false
+python-versions = "*"
+version = "2.3.0"
+
+[[package]]
+category = "main"
 description = "Python Library for Tom's Obvious, Minimal Language"
 name = "toml"
 optional = false
@@ -561,7 +570,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=3.5,<3.7.3 || >3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "jaraco.test (>=3.2.0)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [metadata]
-content-hash = "ed03e234d149ed10d1e2e76e491a1a76aa3f5fbd04637547127ff206266d98f3"
+content-hash = "d7f1fad9f3db007851158ba2040f6b08b7b3118c4a06819ce980ee8f3e8931d2"
 lock-version = "1.0"
 python-versions = "^3.7"
 
@@ -708,8 +717,8 @@ py = [
     {file = "py-1.9.0.tar.gz", hash = "sha256:9ca6883ce56b4e8da7e79ac18787889fa5206c79dcc67fb065376cd2fe03f342"},
 ]
 py-aiger = [
-    {file = "py-aiger-6.1.5.tar.gz", hash = "sha256:f11e9fbf205c4352962bd9d45b2c2ba01100b1b877d88412f2a0832a8b6ac580"},
-    {file = "py_aiger-6.1.5-py3-none-any.whl", hash = "sha256:1e03612e711a5f7c0c3026c390d8373dce889b759fb41d5b80b4247b6783f3da"},
+    {file = "py-aiger-6.1.9.tar.gz", hash = "sha256:47e64b5a5b982cd0ea27578deda2540f1b4a7865a5a9aff78062000873ae8672"},
+    {file = "py_aiger-6.1.9-py3-none-any.whl", hash = "sha256:2ba7751cc074a51420cba415db81dfadd28c3306ef66682b9f47c72d83a179ca"},
 ]
 py-aiger-bdd = [
     {file = "py-aiger-bdd-3.0.1.tar.gz", hash = "sha256:cdc3503c93843f9a5b15d01de6cec18748c463eb5ed3b47a444bedd71165a8f0"},
@@ -720,8 +729,8 @@ py-aiger-bv = [
     {file = "py_aiger_bv-4.5.1-py3-none-any.whl", hash = "sha256:cfa1567785f7649761a88635faca77747f222736f2d8b32c568b36c87a274492"},
 ]
 py-aiger-coins = [
-    {file = "py-aiger-coins-3.0.1.tar.gz", hash = "sha256:d7537999aafdbf8c34d22eac7710d57a84d25b6c3db6491ee7d2fe6df19c333a"},
-    {file = "py_aiger_coins-3.0.1-py3-none-any.whl", hash = "sha256:7ad9078f7e9f03ea82d41eba61cd3ab7167c1d7bdde20991b300441fafac87d2"},
+    {file = "py-aiger-coins-3.1.0.tar.gz", hash = "sha256:c95bcd831e7d39dd1e176792e64153ae505b9bd9f3313e7533e8b6b27754c91a"},
+    {file = "py_aiger_coins-3.1.0-py3-none-any.whl", hash = "sha256:cd4501608c95c94c2d63d5efdf157390eec52b9102fe7de51bfde0a49bd095c6"},
 ]
 py-aiger-discrete = [
     {file = "py-aiger-discrete-0.1.6.tar.gz", hash = "sha256:c1ad980c1577dd8001041a4c8ccba28b57dafd0c589ff509374a1a723915f2d4"},
@@ -769,6 +778,10 @@ pytest-xdist = [
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
     {file = "six-1.15.0.tar.gz", hash = "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259"},
+]
+sortedcontainers = [
+    {file = "sortedcontainers-2.3.0-py2.py3-none-any.whl", hash = "sha256:37257a32add0a3ee490bb170b599e93095eed89a55da91fa9f48753ea12fd73f"},
+    {file = "sortedcontainers-2.3.0.tar.gz", hash = "sha256:59cc937650cf60d677c16775597c89a960658a09cf7c1a668f86e1e4464b10a1"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
