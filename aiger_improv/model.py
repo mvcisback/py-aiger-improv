@@ -94,8 +94,8 @@ def onehot_gadget(output: str):
              .with_output('sat')
     
     encoder = D.Encoding(
-        encode=lambda x: 1 << x,
-        decode=lambda x: (x >> 1) & 1,
+        encode=lambda x: 1 << int(x),
+        decode=lambda x: bool((x >> 1) & 1),
     )
 
     return D.from_aigbv(

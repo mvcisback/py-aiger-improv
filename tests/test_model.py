@@ -2,6 +2,7 @@ import pytest
 
 import aiger_bv as BV
 import aiger_coins as C
+import aiger_ptltl as LTL
 import funcy as fn
 
 from aiger_improv.model import from_pcirc
@@ -102,3 +103,33 @@ def test_from_pcirc_smoke():
 
     expr = model.mdd.io.inputs[1].expr() == 0
     assert model.prob(expr) == pytest.approx(1/6)
+
+
+def test_never_false():
+    spec = LTL.atom('x').historically()
+    monitor = BV.aig2aigbv(spec.aig)
+    dyn = C.pcirc(BV.identity_gate(1, 'x'))
+    
+    horizon = 3
+    model = from_pcirc(dyn, monitor, steps=horizon)
+    graph = model.graph()
+    assert len(graph.nodes) == horizon + 2
+    assert len(graph.edges) == 2 * horizon
+
+
+def test_never_false_redemption():
+    spec = LTL.atom('x').historically()
+    monitor = BV.aig2aigbv(spec.aig)
+
+    # Environment can save you.
+    x, y = BV.uatom(1, 'x'), BV.uatom(1, 'y')
+    xy = (x | y).with_output('x')  # env y can override x.
+
+    dyn = C.pcirc(xy.aigbv) \
+           .randomize({'y': {0: 0.4, 1: 0.6}})
+    
+    horizon = 3
+    model = from_pcirc(dyn, monitor, steps=horizon)
+    graph = model.graph()
+    assert len(graph.nodes) == 2 * horizon + 2
+    assert len(graph.edges) == 4 * horizon

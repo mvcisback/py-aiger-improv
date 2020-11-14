@@ -46,7 +46,7 @@ description = "Python library for converting binary decision diagrams to automat
 name = "bdd2dfa"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "1.0.2"
+version = "1.0.3"
 
 [package.dependencies]
 attrs = ">=20.0.0,<21.0.0"
@@ -206,7 +206,7 @@ description = "Python abstraction around Binary Decision Diagrams to implement M
 name = "mdd"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "0.3.4"
+version = "0.3.5"
 
 [package.dependencies]
 dd = ">=0.5.5,<0.6.0"
@@ -217,7 +217,7 @@ py-aiger-bv = ">=4.3.0,<5.0.0"
 
 [package.dependencies.bdd2dfa]
 extras = ["nx"]
-version = ">=1.0.0,<2.0.0"
+version = ">=1.0.3,<2.0.0"
 
 [package.dependencies.networkx]
 extras = ["nx"]
@@ -327,7 +327,7 @@ description = "A python library for manipulating sequential and-inverter gates."
 name = "py-aiger"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "6.1.9"
+version = "6.1.11"
 
 [package.dependencies]
 attrs = ">=20.0.0,<21.0.0"
@@ -570,7 +570,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=3.5,<3.7.3 || >3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "jaraco.test (>=3.2.0)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [metadata]
-content-hash = "d7f1fad9f3db007851158ba2040f6b08b7b3118c4a06819ce980ee8f3e8931d2"
+content-hash = "09d3fd8bd77ab6e0d4f18d17e226023c8165d8fe0a7c17d0c284ffc941b1dfb9"
 lock-version = "1.0"
 python-versions = "^3.7"
 
@@ -591,8 +591,8 @@ attrs = [
     {file = "attrs-20.3.0.tar.gz", hash = "sha256:832aa3cde19744e49938b91fea06d69ecb9e649c93ba974535d08ad92164f700"},
 ]
 bdd2dfa = [
-    {file = "bdd2dfa-1.0.2-py3-none-any.whl", hash = "sha256:fc55e1ed11862391213f7ebdcb7c398e83ad2572f8c95b1609ed8193e1b8c6ee"},
-    {file = "bdd2dfa-1.0.2.tar.gz", hash = "sha256:f33a5a6da7d43f73be177444fd78877d6f2f76956f0e6901f57e5acbba6147c7"},
+    {file = "bdd2dfa-1.0.3-py3-none-any.whl", hash = "sha256:d7194b3028ce001ed3331d3ba3d30b8935729619822ab8c373797359b8dcd72b"},
+    {file = "bdd2dfa-1.0.3.tar.gz", hash = "sha256:5764f94a258a1aa5e9d851f5575b8cb9044e299a5fa0dc0280104a7767c5e573"},
 ]
 bidict = [
     {file = "bidict-0.21.2-py2.py3-none-any.whl", hash = "sha256:929d056e8d0d9b17ceda20ba5b24ac388e2a4d39802b87f9f4d3f45ecba070bf"},
@@ -642,8 +642,8 @@ mccabe = [
     {file = "mccabe-0.6.1.tar.gz", hash = "sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"},
 ]
 mdd = [
-    {file = "mdd-0.3.4-py3-none-any.whl", hash = "sha256:a56506ec032c034edb83a8cfb2569673c61fbef2f98a0a96e17de825e2b1dda8"},
-    {file = "mdd-0.3.4.tar.gz", hash = "sha256:ac7994dd30c48f8dc8fab917bae338833635adab445fb89aeb611a1c755ad161"},
+    {file = "mdd-0.3.5-py3-none-any.whl", hash = "sha256:84347f0c4cb538b74e473c27d727abf9829ed1ae63fb306d5c70c228cb2e99ac"},
+    {file = "mdd-0.3.5.tar.gz", hash = "sha256:9bbc6081900c6f1241944bc630ff3fd72cd723345b88db44af373741bcdc7952"},
 ]
 networkx = [
     {file = "networkx-2.5-py3-none-any.whl", hash = "sha256:8c5812e9f798d37c50570d15c4a69d5710a18d77bafc903ee9c5fba7454c616c"},
@@ -717,8 +717,8 @@ py = [
     {file = "py-1.9.0.tar.gz", hash = "sha256:9ca6883ce56b4e8da7e79ac18787889fa5206c79dcc67fb065376cd2fe03f342"},
 ]
 py-aiger = [
-    {file = "py-aiger-6.1.9.tar.gz", hash = "sha256:47e64b5a5b982cd0ea27578deda2540f1b4a7865a5a9aff78062000873ae8672"},
-    {file = "py_aiger-6.1.9-py3-none-any.whl", hash = "sha256:2ba7751cc074a51420cba415db81dfadd28c3306ef66682b9f47c72d83a179ca"},
+    {file = "py-aiger-6.1.11.tar.gz", hash = "sha256:290ed97586d43a536bb9c267878af727b56f0c58b8a4fbc598fb776134d8fa0d"},
+    {file = "py_aiger-6.1.11-py3-none-any.whl", hash = "sha256:1c4000679ec05967d94d00e7f6fd0f673096ceb4fd5fab27ccf0052f65061b5d"},
 ]
 py-aiger-bdd = [
     {file = "py-aiger-bdd-3.0.1.tar.gz", hash = "sha256:cdc3503c93843f9a5b15d01de6cec18748c463eb5ed3b47a444bedd71165a8f0"},
