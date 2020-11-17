@@ -87,6 +87,7 @@ class Model:
     def actions(self):
         return [name for name in self.order if not self.is_random(name)]
 
+
 def onehot_gadget(output: str):
     sat = BV.uatom(1, output)
     false, true = BV.uatom(2, 0b01), BV.uatom(2, 0b10)

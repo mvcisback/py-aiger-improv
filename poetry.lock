@@ -1,64 +1,63 @@
 [[package]]
-category = "main"
-description = "apipkg: namespace control and lazy-import mechanism"
 name = "apipkg"
+version = "1.5"
+description = "apipkg: namespace control and lazy-import mechanism"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.5"
 
 [[package]]
-category = "main"
-description = "Utilities for abstract syntax trees and parsing with PLY."
 name = "astutils"
+version = "0.0.4"
+description = "Utilities for abstract syntax trees and parsing with PLY."
+category = "main"
 optional = false
 python-versions = "*"
-version = "0.0.4"
 
 [package.dependencies]
 ply = ">=3.4,<=3.10"
 
 [[package]]
-category = "main"
-description = "Atomic file writes."
-marker = "sys_platform == \"win32\""
 name = "atomicwrites"
+version = "1.4.0"
+description = "Atomic file writes."
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.4.0"
 
 [[package]]
-category = "main"
-description = "Classes Without Boilerplate"
 name = "attrs"
+version = "20.3.0"
+description = "Classes Without Boilerplate"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "20.3.0"
 
 [package.extras]
-dev = ["coverage (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "zope.interface", "furo", "sphinx", "pre-commit"]
+dev = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "zope.interface", "furo", "sphinx", "pre-commit"]
 docs = ["furo", "sphinx", "zope.interface"]
-tests = ["coverage (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "zope.interface"]
-tests_no_zope = ["coverage (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six"]
+tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "zope.interface"]
+tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six"]
 
 [[package]]
-category = "main"
-description = "Python library for converting binary decision diagrams to automata."
 name = "bdd2dfa"
+version = "1.0.3"
+description = "Python library for converting binary decision diagrams to automata."
+category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "1.0.3"
 
 [package.dependencies]
 attrs = ">=20.0.0,<21.0.0"
 dfa = ">=2.0.0,<3.0.0"
 
 [[package]]
-category = "main"
-description = "The bidirectional mapping library for Python."
 name = "bidict"
+version = "0.21.2"
+description = "The bidirectional mapping library for Python."
+category = "main"
 optional = false
 python-versions = ">=3.6"
-version = "0.21.2"
 
 [package.extras]
 coverage = ["coverage (<6)", "pytest-cov (<3)"]
@@ -68,21 +67,20 @@ precommit = ["pre-commit (<3)"]
 test = ["hypothesis (<6)", "py (<2)", "pytest (<7)", "pytest-benchmark (>=3.2.0,<4)", "sortedcollections (<2)", "sortedcontainers (<3)", "Sphinx (<4)", "sphinx-autodoc-typehints (<2)"]
 
 [[package]]
-category = "main"
-description = "Cross-platform colored terminal text."
-marker = "sys_platform == \"win32\""
 name = "colorama"
+version = "0.4.4"
+description = "Cross-platform colored terminal text."
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "0.4.4"
 
 [[package]]
-category = "main"
-description = "Binary decision diagrams implemented in pure Python, as well as Cython wrappers of CUDD, Sylvan, and BuDDy."
 name = "dd"
+version = "0.5.5"
+description = "Binary decision diagrams implemented in pure Python, as well as Cython wrappers of CUDD, Sylvan, and BuDDy."
+category = "main"
 optional = false
 python-versions = "*"
-version = "0.5.5"
 
 [package.dependencies]
 astutils = ">=0.0.1"
@@ -90,23 +88,22 @@ networkx = ">=1.9.1"
 ply = ">=3.4,<=3.10"
 psutil = ">=3.2.2"
 pydot = ">=1.2.2"
-setuptools = ">=19.6"
 
 [[package]]
-category = "main"
-description = "Decorators for Humans"
 name = "decorator"
+version = "4.4.2"
+description = "Decorators for Humans"
+category = "main"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*"
-version = "4.4.2"
 
 [[package]]
-category = "main"
-description = "Python library for modeling DFAs, Moore Machines, and Transition Systems."
 name = "dfa"
+version = "2.1.1"
+description = "Python library for modeling DFAs, Moore Machines, and Transition Systems."
+category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "2.1.1"
 
 [package.dependencies]
 attrs = ">=20.0.0,<21.0.0"
@@ -118,12 +115,12 @@ pytest-xdist = ">=2.1.0,<3.0.0"
 draw = ["pydot (>=1.4,<2.0)"]
 
 [[package]]
-category = "main"
-description = "execnet: rapid multi-Python deployment"
 name = "execnet"
+version = "1.7.1"
+description = "execnet: rapid multi-Python deployment"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.7.1"
 
 [package.dependencies]
 apipkg = ">=1.4"
@@ -132,38 +129,34 @@ apipkg = ">=1.4"
 testing = ["pre-commit"]
 
 [[package]]
-category = "dev"
-description = "the modular source code checker: pep8 pyflakes and co"
 name = "flake8"
+version = "3.8.4"
+description = "the modular source code checker: pep8 pyflakes and co"
+category = "dev"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,>=2.7"
-version = "3.8.4"
 
 [package.dependencies]
+importlib-metadata = {version = "*", markers = "python_version < \"3.8\""}
 mccabe = ">=0.6.0,<0.7.0"
 pycodestyle = ">=2.6.0a1,<2.7.0"
 pyflakes = ">=2.2.0,<2.3.0"
 
-[package.dependencies.importlib-metadata]
-python = "<3.8"
-version = "*"
-
 [[package]]
-category = "main"
-description = "A fancy and practical functional tools"
 name = "funcy"
+version = "1.15"
+description = "A fancy and practical functional tools"
+category = "main"
 optional = false
 python-versions = "*"
-version = "1.15"
 
 [[package]]
-category = "main"
-description = "Read metadata from Python packages"
-marker = "python_version < \"3.8\""
 name = "importlib-metadata"
+version = "2.0.0"
+description = "Read metadata from Python packages"
+category = "main"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
-version = "2.0.0"
 
 [package.dependencies]
 zipp = ">=0.5"
@@ -173,63 +166,57 @@ docs = ["sphinx", "rst.linker"]
 testing = ["packaging", "pep517", "importlib-resources (>=1.3)"]
 
 [[package]]
-category = "main"
-description = "iniconfig: brain-dead simple config-ini parsing"
 name = "iniconfig"
+version = "1.1.1"
+description = "iniconfig: brain-dead simple config-ini parsing"
+category = "main"
 optional = false
 python-versions = "*"
-version = "1.1.1"
 
 [[package]]
-category = "main"
-description = "Python library for manipulating infinite trees."
 name = "lazytree"
+version = "0.3.2"
+description = "Python library for manipulating infinite trees."
+category = "main"
 optional = false
 python-versions = ">=3.6,<4.0"
-version = "0.3.2"
 
 [package.dependencies]
 attrs = ">=20.0.0,<21.0.0"
 funcy = ">=1.12,<2.0"
 
 [[package]]
-category = "dev"
-description = "McCabe checker, plugin for flake8"
 name = "mccabe"
+version = "0.6.1"
+description = "McCabe checker, plugin for flake8"
+category = "dev"
 optional = false
 python-versions = "*"
-version = "0.6.1"
 
 [[package]]
-category = "main"
-description = "Python abstraction around Binary Decision Diagrams to implement Multivalued Decision Diagrams."
 name = "mdd"
+version = "0.3.5"
+description = "Python abstraction around Binary Decision Diagrams to implement Multivalued Decision Diagrams."
+category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "0.3.5"
 
 [package.dependencies]
+bdd2dfa = {version = ">=1.0.3,<2.0.0", extras = ["nx"]}
 dd = ">=0.5.5,<0.6.0"
 funcy = ">=1.14,<2.0"
+networkx = {version = ">=2.5,<3.0", extras = ["nx"]}
 py-aiger = ">=6.1.1,<7.0.0"
 py-aiger-bdd = ">=3.0.0,<4.0.0"
 py-aiger-bv = ">=4.3.0,<5.0.0"
 
-[package.dependencies.bdd2dfa]
-extras = ["nx"]
-version = ">=1.0.3,<2.0.0"
-
-[package.dependencies.networkx]
-extras = ["nx"]
-version = ">=2.5,<3.0"
-
 [[package]]
-category = "main"
-description = "Python package for creating and manipulating graphs and networks"
 name = "networkx"
+version = "2.5"
+description = "Python package for creating and manipulating graphs and networks"
+category = "main"
 optional = false
 python-versions = ">=3.6"
-version = "2.5"
 
 [package.dependencies]
 decorator = ">=4.3.0"
@@ -248,86 +235,84 @@ pyyaml = ["pyyaml"]
 scipy = ["scipy"]
 
 [[package]]
-category = "main"
-description = "NumPy is the fundamental package for array computing with Python."
 name = "numpy"
+version = "1.19.4"
+description = "NumPy is the fundamental package for array computing with Python."
+category = "main"
 optional = false
 python-versions = ">=3.6"
-version = "1.19.4"
 
 [[package]]
-category = "main"
-description = "Core utilities for Python packages"
 name = "packaging"
+version = "20.4"
+description = "Core utilities for Python packages"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "20.4"
 
 [package.dependencies]
 pyparsing = ">=2.0.2"
 six = "*"
 
 [[package]]
-category = "main"
-description = "(Soon to be) the fastest pure-Python PEG parser I could muster"
 name = "parsimonious"
+version = "0.8.1"
+description = "(Soon to be) the fastest pure-Python PEG parser I could muster"
+category = "main"
 optional = false
 python-versions = "*"
-version = "0.8.1"
 
 [package.dependencies]
 six = ">=1.9.0"
 
 [[package]]
-category = "main"
-description = "plugin and hook calling mechanisms for python"
 name = "pluggy"
+version = "0.13.1"
+description = "plugin and hook calling mechanisms for python"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "0.13.1"
 
 [package.dependencies]
-[package.dependencies.importlib-metadata]
-python = "<3.8"
-version = ">=0.12"
+importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
 
 [package.extras]
 dev = ["pre-commit", "tox"]
 
 [[package]]
-category = "main"
-description = "Python Lex & Yacc"
 name = "ply"
+version = "3.10"
+description = "Python Lex & Yacc"
+category = "main"
 optional = false
 python-versions = "*"
-version = "3.10"
 
 [[package]]
-category = "main"
-description = "Cross-platform lib for process and system monitoring in Python."
 name = "psutil"
+version = "5.7.3"
+description = "Cross-platform lib for process and system monitoring in Python."
+category = "main"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "5.7.3"
 
 [package.extras]
 test = ["ipaddress", "mock", "unittest2", "enum34", "pywin32", "wmi"]
 
 [[package]]
-category = "main"
-description = "library with cross-python path, ini-parsing, io, code, log facilities"
 name = "py"
+version = "1.9.0"
+description = "library with cross-python path, ini-parsing, io, code, log facilities"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.9.0"
 
 [[package]]
-category = "main"
-description = "A python library for manipulating sequential and-inverter gates."
 name = "py-aiger"
+version = "6.1.11"
+description = "A python library for manipulating sequential and-inverter gates."
+category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "6.1.11"
 
 [package.dependencies]
 attrs = ">=20.0.0,<21.0.0"
@@ -339,12 +324,12 @@ sortedcontainers = ">=2.3.0,<3.0.0"
 toposort = ">=1.5,<2.0"
 
 [[package]]
-category = "main"
-description = "Aiger to BDD bridge."
 name = "py-aiger-bdd"
+version = "3.0.1"
+description = "Aiger to BDD bridge."
+category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "3.0.1"
 
 [package.dependencies]
 attrs = ">=20.0.0,<21.0.0"
@@ -354,12 +339,12 @@ funcy = ">=1.12,<2.0"
 py-aiger = ">=6.0.0,<7.0.0"
 
 [[package]]
-category = "main"
-description = "A python library for manipulating sequential and-inverter gates."
 name = "py-aiger-bv"
+version = "4.5.1"
+description = "A python library for manipulating sequential and-inverter gates."
+category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "4.5.1"
 
 [package.dependencies]
 attrs = ">=20.0.0,<21.0.0"
@@ -368,12 +353,25 @@ py-aiger = ">=6.1.2,<7.0.0"
 pyrsistent = ">=0.17,<0.18"
 
 [[package]]
+name = "py-aiger-cnf"
+version = "5.0.1"
+description = "Python library to convert between AIGER and CNF"
 category = "main"
-description = "Library for creating circuits that encode discrete distributions."
-name = "py-aiger-coins"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "3.1.0"
+
+[package.dependencies]
+bidict = ">=0.21.0,<0.22.0"
+funcy = ">=1.12,<2.0"
+py-aiger = ">=6.0.0,<7.0.0"
+
+[[package]]
+name = "py-aiger-coins"
+version = "3.2.0"
+description = "Library for creating circuits that encode discrete distributions."
+category = "main"
+optional = false
+python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
 attrs = ">=20.0.0,<21.0.0"
@@ -387,12 +385,12 @@ bdd = ["py-aiger-bdd (>=3.0.0,<4.0.0)", "mdd (>=0.3.4,<0.4.0)", "numpy (>=1.19.4
 sat = ["py-aiger-sat (>=3.0.4,<4.0.0)"]
 
 [[package]]
-category = "main"
-description = "Library for modeling functions over discrete sets using aiger circuits."
 name = "py-aiger-discrete"
+version = "0.1.6"
+description = "Library for modeling functions over discrete sets using aiger circuits."
+category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "0.1.6"
 
 [package.dependencies]
 funcy = ">=1.14,<2.0"
@@ -404,116 +402,130 @@ pyrsistent = ">=0.17.3,<0.18.0"
 mdd = ["mdd (>=0.3.3,<0.4.0)"]
 
 [[package]]
-category = "main"
-description = "Library for generating (p)ast (t)ense (l)inear (t)emporal (l)ogic monitors as aiger circuits."
 name = "py-aiger-ptltl"
+version = "3.0.1"
+description = "Library for generating (p)ast (t)ense (l)inear (t)emporal (l)ogic monitors as aiger circuits."
+category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "3.0.1"
 
 [package.dependencies]
 py-aiger = ">=6.0.0,<7.0.0"
 
 [[package]]
-category = "dev"
-description = "Python style guide checker"
-name = "pycodestyle"
+name = "py-aiger-sat"
+version = "3.0.4"
+description = "Pythonic interface between AIGs and SAT solvers."
+category = "main"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "2.6.0"
+python-versions = ">=3.7,<4.0"
+
+[package.dependencies]
+attrs = ">=20.0.0,<21.0.0"
+py-aiger = ">=6.0.0,<7.0.0"
+py-aiger-cnf = ">=5.0.0,<6.0.0"
+python-sat = ">=0.1.0,<0.2.0"
+
+[package.extras]
+bitvector = ["py-aiger-bv (>=4.0.0,<5.0.0)"]
 
 [[package]]
-category = "main"
-description = "Python interface to Graphviz's Dot"
-name = "pydot"
+name = "pycodestyle"
+version = "2.6.0"
+description = "Python style guide checker"
+category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[[package]]
+name = "pydot"
 version = "1.4.1"
+description = "Python interface to Graphviz's Dot"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [package.dependencies]
 pyparsing = ">=2.1.4"
 
 [[package]]
-category = "dev"
-description = "passive checker of Python programs"
 name = "pyflakes"
+version = "2.2.0"
+description = "passive checker of Python programs"
+category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "2.2.0"
 
 [[package]]
-category = "main"
-description = "Python parsing module"
 name = "pyparsing"
+version = "2.4.7"
+description = "Python parsing module"
+category = "main"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
-version = "2.4.7"
 
 [[package]]
-category = "main"
-description = "Persistent/Functional/Immutable data structures"
 name = "pyrsistent"
+version = "0.17.3"
+description = "Persistent/Functional/Immutable data structures"
+category = "main"
 optional = false
 python-versions = ">=3.5"
-version = "0.17.3"
 
 [[package]]
-category = "main"
-description = "pytest: simple powerful testing with Python"
 name = "pytest"
+version = "6.1.2"
+description = "pytest: simple powerful testing with Python"
+category = "main"
 optional = false
 python-versions = ">=3.5"
-version = "6.1.2"
 
 [package.dependencies]
-atomicwrites = ">=1.0"
+atomicwrites = {version = ">=1.0", markers = "sys_platform == \"win32\""}
 attrs = ">=17.4.0"
-colorama = "*"
+colorama = {version = "*", markers = "sys_platform == \"win32\""}
+importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
 iniconfig = "*"
 packaging = "*"
 pluggy = ">=0.12,<1.0"
 py = ">=1.8.2"
 toml = "*"
 
-[package.dependencies.importlib-metadata]
-python = "<3.8"
-version = ">=0.12"
-
 [package.extras]
-checkqa_mypy = ["mypy (0.780)"]
+checkqa_mypy = ["mypy (==0.780)"]
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
 [[package]]
-category = "dev"
-description = "pytest plugin to check FLAKE8 requirements"
 name = "pytest-flake8"
+version = "1.0.6"
+description = "pytest plugin to check FLAKE8 requirements"
+category = "dev"
 optional = false
 python-versions = "*"
-version = "1.0.6"
 
 [package.dependencies]
 flake8 = ">=3.5"
 pytest = ">=3.5"
 
 [[package]]
-category = "main"
-description = "run tests in isolated forked subprocesses"
 name = "pytest-forked"
+version = "1.3.0"
+description = "run tests in isolated forked subprocesses"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "1.3.0"
 
 [package.dependencies]
 py = "*"
 pytest = ">=3.10"
 
 [[package]]
-category = "main"
-description = "pytest xdist plugin for distributed testing and loop-on-failing modes"
 name = "pytest-xdist"
+version = "2.1.0"
+description = "pytest xdist plugin for distributed testing and loop-on-failing modes"
+category = "main"
 optional = false
 python-versions = ">=3.5"
-version = "2.1.0"
 
 [package.dependencies]
 execnet = ">=1.1"
@@ -525,54 +537,79 @@ psutil = ["psutil (>=3.0)"]
 testing = ["filelock"]
 
 [[package]]
+name = "python-sat"
+version = "0.1.6.dev9"
+description = "A Python library for prototyping with SAT oracles"
 category = "main"
-description = "Python 2 and 3 compatibility utilities"
-name = "six"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
-version = "1.15.0"
-
-[[package]]
-category = "main"
-description = "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set"
-name = "sortedcontainers"
 optional = false
 python-versions = "*"
-version = "2.3.0"
+
+[package.dependencies]
+six = "*"
+
+[package.extras]
+aiger = ["py-aiger-cnf (>=2.0.0)"]
+pblib = ["pypblib (>=0.0.3)"]
 
 [[package]]
+name = "scipy"
+version = "1.5.4"
+description = "SciPy: Scientific Library for Python"
 category = "main"
-description = "Python Library for Tom's Obvious, Minimal Language"
-name = "toml"
-optional = false
-python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
-version = "0.10.2"
-
-[[package]]
-category = "main"
-description = "Implements a topological sort algorithm."
-name = "toposort"
-optional = false
-python-versions = "*"
-version = "1.5"
-
-[[package]]
-category = "main"
-description = "Backport of pathlib-compatible object wrapper for zip files"
-marker = "python_version < \"3.8\""
-name = "zipp"
 optional = false
 python-versions = ">=3.6"
+
+[package.dependencies]
+numpy = ">=1.14.5"
+
+[[package]]
+name = "six"
+version = "1.15.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
+name = "sortedcontainers"
+version = "2.3.0"
+description = "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "toml"
+version = "0.10.2"
+description = "Python Library for Tom's Obvious, Minimal Language"
+category = "main"
+optional = false
+python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
+name = "toposort"
+version = "1.5"
+description = "Implements a topological sort algorithm."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "zipp"
 version = "3.4.0"
+description = "Backport of pathlib-compatible object wrapper for zip files"
+category = "main"
+optional = false
+python-versions = ">=3.6"
 
 [package.extras]
 docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
-testing = ["pytest (>=3.5,<3.7.3 || >3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "jaraco.test (>=3.2.0)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
+testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "jaraco.test (>=3.2.0)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [metadata]
-content-hash = "09d3fd8bd77ab6e0d4f18d17e226023c8165d8fe0a7c17d0c284ffc941b1dfb9"
-lock-version = "1.0"
+lock-version = "1.1"
 python-versions = "^3.7"
+content-hash = "03b781016ae9eb2f17a6b82c501b68e5b6528bb8c7787b75cf65bc9350a6bf67"
 
 [metadata.files]
 apipkg = [
@@ -728,9 +765,13 @@ py-aiger-bv = [
     {file = "py-aiger-bv-4.5.1.tar.gz", hash = "sha256:5b0d3533f9ea83f94e65bd7962c653c633b3b56d5b6092d5b0208df14c3eb15c"},
     {file = "py_aiger_bv-4.5.1-py3-none-any.whl", hash = "sha256:cfa1567785f7649761a88635faca77747f222736f2d8b32c568b36c87a274492"},
 ]
+py-aiger-cnf = [
+    {file = "py-aiger-cnf-5.0.1.tar.gz", hash = "sha256:85c1446e6cad0353716df7eb1a902eb4487ce27691c4a1e16a3c9699ed733276"},
+    {file = "py_aiger_cnf-5.0.1-py3-none-any.whl", hash = "sha256:bdbc46b548ae8f1b496e4fef2d911c0c8e2ce1fb793db89ce96be43840e0051e"},
+]
 py-aiger-coins = [
-    {file = "py-aiger-coins-3.1.0.tar.gz", hash = "sha256:c95bcd831e7d39dd1e176792e64153ae505b9bd9f3313e7533e8b6b27754c91a"},
-    {file = "py_aiger_coins-3.1.0-py3-none-any.whl", hash = "sha256:cd4501608c95c94c2d63d5efdf157390eec52b9102fe7de51bfde0a49bd095c6"},
+    {file = "py-aiger-coins-3.2.0.tar.gz", hash = "sha256:fc4e5d1edd851a2b9f708fd07c0728714cff3af8e0c87e4c18138bc2ae1d1b05"},
+    {file = "py_aiger_coins-3.2.0-py3-none-any.whl", hash = "sha256:6871e8cb90a28f7e7b29edce9c41b185147f2fe9630f7285aad2467813360c89"},
 ]
 py-aiger-discrete = [
     {file = "py-aiger-discrete-0.1.6.tar.gz", hash = "sha256:c1ad980c1577dd8001041a4c8ccba28b57dafd0c589ff509374a1a723915f2d4"},
@@ -739,6 +780,10 @@ py-aiger-discrete = [
 py-aiger-ptltl = [
     {file = "py-aiger-ptltl-3.0.1.tar.gz", hash = "sha256:fc5356ee2c184b6b9e3217ffe3bf69adc917f404ebef82a0948428bd3df34833"},
     {file = "py_aiger_ptltl-3.0.1-py3-none-any.whl", hash = "sha256:2ddd3168be18ccfae91bbab33611d117bbf74f2c584c592a627ee1446bb70f17"},
+]
+py-aiger-sat = [
+    {file = "py-aiger-sat-3.0.4.tar.gz", hash = "sha256:e01fac80bbe5dfacc6b087a396189c5f5901d74aa239ec1b2a964c8a652664d6"},
+    {file = "py_aiger_sat-3.0.4-py3-none-any.whl", hash = "sha256:0742cf5cfa2d2ee41b222318d9825339b35a4765ed0cbc38cb1b4063792f513c"},
 ]
 pycodestyle = [
     {file = "pycodestyle-2.6.0-py2.py3-none-any.whl", hash = "sha256:2295e7b2f6b5bd100585ebcb1f616591b652db8a741695b3d8f5d28bdc934367"},
@@ -774,6 +819,63 @@ pytest-forked = [
 pytest-xdist = [
     {file = "pytest-xdist-2.1.0.tar.gz", hash = "sha256:82d938f1a24186520e2d9d3a64ef7d9ac7ecdf1a0659e095d18e596b8cbd0672"},
     {file = "pytest_xdist-2.1.0-py3-none-any.whl", hash = "sha256:7c629016b3bb006b88ac68e2b31551e7becf173c76b977768848e2bbed594d90"},
+]
+python-sat = [
+    {file = "python-sat-0.1.6.dev9.tar.gz", hash = "sha256:e7ab6049709262f4b2b04812ef5dd79277c9cebf78ebea5aca5cb1e51940f760"},
+    {file = "python_sat-0.1.6.dev9-cp27-cp27m-macosx_10_15_x86_64.whl", hash = "sha256:bc50c221fd4f708a814a25e93448cadc59c881da9834c2d990cea2d6adb42114"},
+    {file = "python_sat-0.1.6.dev9-cp27-cp27m-manylinux1_i686.whl", hash = "sha256:8b1859487f46512de93628c3f5b6563ab420faffc8cf278713a51b028c7764e9"},
+    {file = "python_sat-0.1.6.dev9-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:bc8ed656c1c717090199c90646f7579d470f63800b4fdd133bf10b31cdb1f1d0"},
+    {file = "python_sat-0.1.6.dev9-cp27-cp27m-manylinux2010_x86_64.whl", hash = "sha256:3b11e36c270d3fa2d5abc7819a092aea19ff0b7e167a208aad20cca2a6139980"},
+    {file = "python_sat-0.1.6.dev9-cp27-cp27mu-manylinux1_i686.whl", hash = "sha256:7a31aa47ea9c1ba36f5f647dde7a7171e429ed8d30cf74b3e1bd70b1bae5a300"},
+    {file = "python_sat-0.1.6.dev9-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:af017720a6a488e850e5d059ffde83f93e6949fd6185ee9f6e76302f56ff7d1b"},
+    {file = "python_sat-0.1.6.dev9-cp27-cp27mu-manylinux2010_x86_64.whl", hash = "sha256:ae0752155ad056e102ffe460b0e7de2b90a5ea591be54e04ffa2ab88a146a73b"},
+    {file = "python_sat-0.1.6.dev9-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:311f14e670d9aa86af5f5340a3aad32f58ab53a1040ba8a9b7371f8e42ebaf31"},
+    {file = "python_sat-0.1.6.dev9-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:f3e63b3caf46e4234e04e3581918fe391d1d81b5d25a9b5526265fdb98c73a96"},
+    {file = "python_sat-0.1.6.dev9-cp35-cp35m-manylinux2010_x86_64.whl", hash = "sha256:402e68fc337d6f4d8409d51c27866a054249e2733206d8c1ca5c4440f743ae56"},
+    {file = "python_sat-0.1.6.dev9-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:a8b5aa9905ca3d6a05458fb426b6be00a6d164cdafb946e9797436c7e019fd58"},
+    {file = "python_sat-0.1.6.dev9-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:f760751e5e6322ba08d0c402c05f9695bc53ab1ee7d8a5ff6ec70816a26405fe"},
+    {file = "python_sat-0.1.6.dev9-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:69d79d827ae4d43354830ba9864acc655a21038bfca2e4f0c9ab76913f7ad46e"},
+    {file = "python_sat-0.1.6.dev9-cp36-cp36m-win_amd64.whl", hash = "sha256:121f1626d743a7a64d380d542ef29a40ef537a3b1e4c8225413fa3f1be70adab"},
+    {file = "python_sat-0.1.6.dev9-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:3f9f726ed9ff41b5da7cbda0b7268af3aa677fd76c666015d42fabfc0945b97f"},
+    {file = "python_sat-0.1.6.dev9-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:7dfb7b2584243f99120c52f48e0ae137bc1a53cf1af69e9759387f5a9aa6bccd"},
+    {file = "python_sat-0.1.6.dev9-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:295cc6568a1e074c44d1b7a33e074b8ad93400f1486622eeeb7fb78aea02e8d8"},
+    {file = "python_sat-0.1.6.dev9-cp37-cp37m-win_amd64.whl", hash = "sha256:d8792d9b3a25ab4473c97c091e4c8ad197b613359cb4dcd6c241b3f39524ab9c"},
+    {file = "python_sat-0.1.6.dev9-cp38-cp38-macosx_10_15_x86_64.whl", hash = "sha256:b61cbdb9f48b2ef7e25cc52ba55eebebedbe1c456835afb2a211d70a5019b99d"},
+    {file = "python_sat-0.1.6.dev9-cp38-cp38-manylinux1_i686.whl", hash = "sha256:1bd3c023e833638ff57db2214ca25c2725cbb950d062a93f5d313731d313fffa"},
+    {file = "python_sat-0.1.6.dev9-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:9b202efd490de404d8e2ad6d0a6d955982da5427d95c50648364f933fa68ad64"},
+    {file = "python_sat-0.1.6.dev9-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:7ad05575a0bc8451cb81e85f29223a993625c096434fa853d3d55b72e7123dd9"},
+    {file = "python_sat-0.1.6.dev9-cp38-cp38-win_amd64.whl", hash = "sha256:6537f0d65ce5d29a2a3e6438a02a184f2cc358f6402e9ad77b24816cefc62460"},
+    {file = "python_sat-0.1.6.dev9-cp39-cp39-macosx_10_15_x86_64.whl", hash = "sha256:a7b2436153ed63f989cc3cc1c2c37f1ad4424c173ef07cb27d7be56a7c32e0bc"},
+    {file = "python_sat-0.1.6.dev9-cp39-cp39-manylinux1_i686.whl", hash = "sha256:243aad930f09a2c4680c6187e9d3d16738113114648ca73a6d33944f2fb74af9"},
+    {file = "python_sat-0.1.6.dev9-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:f42b6c4e78be8451854eed706909dbafd94a7561c74e425985648b298a620bd4"},
+    {file = "python_sat-0.1.6.dev9-cp39-cp39-manylinux2010_x86_64.whl", hash = "sha256:1ad1e666fa7332133a86cf18fe6c1aa1948c114077bdcbdb6263fea98eafbe64"},
+]
+scipy = [
+    {file = "scipy-1.5.4-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:4f12d13ffbc16e988fa40809cbbd7a8b45bc05ff6ea0ba8e3e41f6f4db3a9e47"},
+    {file = "scipy-1.5.4-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:a254b98dbcc744c723a838c03b74a8a34c0558c9ac5c86d5561703362231107d"},
+    {file = "scipy-1.5.4-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:368c0f69f93186309e1b4beb8e26d51dd6f5010b79264c0f1e9ca00cd92ea8c9"},
+    {file = "scipy-1.5.4-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:4598cf03136067000855d6b44d7a1f4f46994164bcd450fb2c3d481afc25dd06"},
+    {file = "scipy-1.5.4-cp36-cp36m-win32.whl", hash = "sha256:e98d49a5717369d8241d6cf33ecb0ca72deee392414118198a8e5b4c35c56340"},
+    {file = "scipy-1.5.4-cp36-cp36m-win_amd64.whl", hash = "sha256:65923bc3809524e46fb7eb4d6346552cbb6a1ffc41be748535aa502a2e3d3389"},
+    {file = "scipy-1.5.4-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:9ad4fcddcbf5dc67619379782e6aeef41218a79e17979aaed01ed099876c0e62"},
+    {file = "scipy-1.5.4-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:f87b39f4d69cf7d7529d7b1098cb712033b17ea7714aed831b95628f483fd012"},
+    {file = "scipy-1.5.4-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:25b241034215247481f53355e05f9e25462682b13bd9191359075682adcd9554"},
+    {file = "scipy-1.5.4-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:fa789583fc94a7689b45834453fec095245c7e69c58561dc159b5d5277057e4c"},
+    {file = "scipy-1.5.4-cp37-cp37m-win32.whl", hash = "sha256:d6d25c41a009e3c6b7e757338948d0076ee1dd1770d1c09ec131f11946883c54"},
+    {file = "scipy-1.5.4-cp37-cp37m-win_amd64.whl", hash = "sha256:2c872de0c69ed20fb1a9b9cf6f77298b04a26f0b8720a5457be08be254366c6e"},
+    {file = "scipy-1.5.4-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:e360cb2299028d0b0d0f65a5c5e51fc16a335f1603aa2357c25766c8dab56938"},
+    {file = "scipy-1.5.4-cp38-cp38-manylinux1_i686.whl", hash = "sha256:3397c129b479846d7eaa18f999369a24322d008fac0782e7828fa567358c36ce"},
+    {file = "scipy-1.5.4-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:168c45c0c32e23f613db7c9e4e780bc61982d71dcd406ead746c7c7c2f2004ce"},
+    {file = "scipy-1.5.4-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:213bc59191da2f479984ad4ec39406bf949a99aba70e9237b916ce7547b6ef42"},
+    {file = "scipy-1.5.4-cp38-cp38-win32.whl", hash = "sha256:634568a3018bc16a83cda28d4f7aed0d803dd5618facb36e977e53b2df868443"},
+    {file = "scipy-1.5.4-cp38-cp38-win_amd64.whl", hash = "sha256:b03c4338d6d3d299e8ca494194c0ae4f611548da59e3c038813f1a43976cb437"},
+    {file = "scipy-1.5.4-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:3d5db5d815370c28d938cf9b0809dade4acf7aba57eaf7ef733bfedc9b2474c4"},
+    {file = "scipy-1.5.4-cp39-cp39-manylinux1_i686.whl", hash = "sha256:6b0ceb23560f46dd236a8ad4378fc40bad1783e997604ba845e131d6c680963e"},
+    {file = "scipy-1.5.4-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:ed572470af2438b526ea574ff8f05e7f39b44ac37f712105e57fc4d53a6fb660"},
+    {file = "scipy-1.5.4-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:8c8d6ca19c8497344b810b0b0344f8375af5f6bb9c98bd42e33f747417ab3f57"},
+    {file = "scipy-1.5.4-cp39-cp39-win32.whl", hash = "sha256:d84cadd7d7998433334c99fa55bcba0d8b4aeff0edb123b2a1dfcface538e474"},
+    {file = "scipy-1.5.4-cp39-cp39-win_amd64.whl", hash = "sha256:cc1f78ebc982cd0602c9a7615d878396bec94908db67d4ecddca864d049112f2"},
+    {file = "scipy-1.5.4.tar.gz", hash = "sha256:4a453d5e5689de62e5d38edf40af3f17560bfd63c9c5bd228c18c1f99afa155b"},
 ]
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},

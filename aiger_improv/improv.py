@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from functools import reduce
+from typing import Mapping, Sequence
 
 import aiger_bdd as B
 import aiger
@@ -9,8 +10,10 @@ import attr
 import funcy as fn
 import networkx as nx
 import numpy as np
+import scipy as sp
+from bdd2dfa.b2d import BNode
 
-from aiger_improv.model import Model
+from aiger_improv.model import Model, TIMED_NAME
 
 
 def amap(func, collection) -> np.array:
@@ -45,6 +48,7 @@ def entropy_bumper(model, graph):
 
             decisions.append(guard)
 
+
         sizes = amap(model.size, decisions)
         return np.log(sizes)
     return func
@@ -56,34 +60,77 @@ def kid_probs(model, graph, node):
     return amap(model.prob, guards)
 
 
+def improviser(model, rationality):
+    graph = model.graph()
+    entropy_bump = entropy_bumper(model=model, graph=graph)
+
+    node2val = {}
+    for node in nx.topological_sort(graph.reverse()):
+        data = graph.nodes[node]
+        name = data['label']
+
+        if isinstance(name, bool):                        # Leaf Case
+            data['val'] = float(name) * rationality
+            continue
+
+        kids = list(graph.neighbors(node))
+        values = amap(lambda k: graph.nodes[k]['val'], kids)
+        values += entropy_bump(node)   # TODO: arguably a model bug.
+
+        if model.is_random(name):                    # Chance Case.
+            probs = kid_probs(model, graph, node)
+            data['val'] = (probs * values).sum()
+        else:                                        # Decision Case.
+            probs = sp.special.softmax(values)
+            data['val'] = sp.special.logsumexp(values)
+
+        for prob, kid in zip(probs, kids):           # Record probability.
+            graph.edges[node, kid]['prob'] = prob
+            
+    assert graph.in_degree(node) == 0, "Should finish at root."
+    return Improviser(root=node, graph=graph, model=model)
+
+
 @attr.s(frozen=True, auto_attribs=True)
 class Improviser:
+    root: BNode
+    graph: nx.DiGraph
     model: Model
-    rationality: float
 
-    def values(self):
-        graph = self.model.graph()
-        entropy_bump = entropy_bumper(model=self.model, graph=graph)
+    @property
+    def node2val(self) -> Mapping[BNode, float]:
+        return {n: d['val'] for n, d in self.graph.nodes(data=True)}
 
-        value = {}
-        for node in nx.topological_sort(graph.reverse()):
-            name = graph.nodes[node]['label']
+    def transition(self, state, action):
+        curr_name = self.graph.nodes[state]['label']
+        assert state.node.var.startswith(curr_name)
+        for kid in self.graph.neighbors(state):  # Find the transition.
+            guard = self.graph.edges[state, kid]['label']
+            assert guard.inputs == {curr_name}
 
-            if isinstance(name, bool):                        # Leaf Case
-                value[node] = float(name) * self.rationality
+            if guard({curr_name: action})[0]:
+                return kid
+        raise ValueError("Invalid transition.")
+        
+
+    def prob(self, trc, log: bool = False) -> float:
+        if len(trc) > len(self.model.order):
+            raise ValueError("Trace too long.")
+
+        state, lprob = self.root, 0
+        for curr_name, sym in zip(self.model.order, trc):
+            state_name = self.graph.nodes[state]['label']
+
+            if curr_name != state_name:  # Act Uniformly at Random.
+                valid = self.model.mdd.io.var(curr_name).valid
+                lprob -= np.log(self.model.size(valid))  # log(1/|valid|)
                 continue
+            
+            kid = self.transition(state, sym)
+            lprob += np.log(self.graph.edges[state, kid]['prob'])
+            state = kid
 
-            kids = graph.neighbors(node)
-            values = amap(value.get, kids)
-            values += entropy_bump(node)   # TODO: arguably a model bug.
-
-            if self.model.is_random(name):                    # Chance Case.
-                probs = kid_probs(self.model, graph, node)
-                value[node] = (probs * values).sum()
-            else:                                             # Decision Case.
-                value[node] = np.logaddexp(*values)
-
-        return value
+        return lprob if log else np.exp(lprob)
 
 
-__all__ = ['Improviser']
+__all__ = ['Improviser', 'improviser']
