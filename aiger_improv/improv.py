@@ -71,6 +71,7 @@ def improviser(model, rationality):
 
         if isinstance(name, bool):                        # Leaf Case
             data['val'] = float(name) * rationality
+            data['lsat'] = 0 if name else -float('inf')
             continue
 
         kids = list(graph.neighbors(node))
@@ -86,6 +87,10 @@ def improviser(model, rationality):
 
         for prob, kid in zip(probs, kids):           # Record probability.
             graph.edges[node, kid]['prob'] = prob
+
+        # Update log satisfaction probability.
+        lsats = np.array([graph.nodes[k]['lsat'] for k in kids])
+        data['lsat'] = sp.special.logsumexp(lsats, b=probs)
             
     assert graph.in_degree(node) == 0, "Should finish at root."
     return Improviser(root=node, graph=graph, model=model)
@@ -96,6 +101,10 @@ class Improviser:
     root: BNode
     graph: nx.DiGraph
     model: Model
+
+    def sat_prob(self, log=False):
+        lsat = self.graph.nodes[self.root]['lsat']
+        return lsat if log else np.exp(lsat)
 
     @property
     def node2val(self) -> Mapping[BNode, float]:
