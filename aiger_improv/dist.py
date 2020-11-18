@@ -67,3 +67,6 @@ class Distribution:
                 query = self.variable.expr() == action
                 lprob += np.log(self.model.prob(query))
         return lprob
+
+
+__all__ = ['Distribution']

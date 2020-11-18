@@ -200,4 +200,4 @@ class Improviser:
             env_action = yield action
 
 
-__all__ = ['Improviser', 'improviser']
+__all__ = ['Improviser', 'improviser', 'fit']

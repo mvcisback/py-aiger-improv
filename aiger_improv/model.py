@@ -22,6 +22,9 @@ from pyrsistent import pmap
 from pyrsistent.typing import PMap
 
 
+import aiger_improv
+
+
 TIMED_NAME = re.compile(r"(.*)##time_(\d+)$")
 
 
@@ -86,6 +89,13 @@ class Model:
     @property
     def actions(self):
         return [name for name in self.order if not self.is_random(name)]
+
+    def improviser(self, *, rationality=None, psat=None):
+        if (rationality is not None) and (psat is not None):
+            raise ValueError("rationality and psat are mutually exclusive.")
+        if rationality is not None:
+            return aiger_improv.improviser(self, rationality)
+        return aiger_improv.fit(self, psat)
 
 
 def onehot_gadget(output: str):

@@ -19,7 +19,7 @@ def test_never_false1():
     model = from_pcirc(dyn, monitor, steps=horizon)
 
     coeff = np.log(2)
-    actor = improviser(model, coeff)
+    actor = model.improviser(rationality=coeff)
     
     expected = [
         0,
@@ -79,7 +79,7 @@ def test_never_false1():
         example.append(ctrl.send(env))
     assert -float('inf') < lprob(example)
 
-    actor = fit(model, 0.7)
+    actor = model.improviser(psat=0.7)
     assert actor.sat_prob() == pytest.approx(0.7)
 
  
