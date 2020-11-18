@@ -7,7 +7,7 @@ import funcy as fn
 import numpy as np
 
 from aiger_improv.model import from_pcirc
-from aiger_improv.improv import improviser
+from aiger_improv.improv import improviser, fit
 
 
 def test_never_false1():
@@ -69,6 +69,9 @@ def test_never_false1():
 
     with pytest.raises(ValueError):
         lprob([1, 1, 1, 1, 1, 1])
+
+    actor = fit(model, 0.7)
+    assert actor.sat_prob() == pytest.approx(0.7)
  
 
 def test_never_false_redemption():

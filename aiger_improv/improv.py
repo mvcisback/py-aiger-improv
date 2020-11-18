@@ -12,6 +12,7 @@ import networkx as nx
 import numpy as np
 import scipy as sp
 from bdd2dfa.b2d import BNode
+from scipy.optimize import root_scalar
 
 from aiger_improv.model import Model, TIMED_NAME
 
@@ -47,7 +48,6 @@ def entropy_bumper(model, graph):
             guard = reduce(lambda x, y: x & y, skipped, TRUE)
 
             decisions.append(guard)
-
 
         sizes = amap(model.size, decisions)
         return np.log(sizes)
@@ -94,6 +94,31 @@ def improviser(model, rationality):
             
     assert graph.in_degree(node) == 0, "Should finish at root."
     return Improviser(root=node, graph=graph, model=model)
+
+
+def fit(model: Model, psat: float, top: float = 100) -> Improviser:
+    """Fit a max causal ent policy with satisfaction probability psat."""
+    assert 0 <= psat <= 1
+
+    actor = None
+
+    def f(coeff):
+        nonlocal actor
+        actor = improviser(model, coeff)
+        return actor.sat_prob() - psat
+
+    if f(-top) > 0:
+        coeff = 0
+    elif f(top) < 0:
+        coeff = top
+    else:
+        res = root_scalar(f, bracket=(-top, top), method="brentq")
+        coeff = res.root
+
+    if coeff < 0: # More likely the negated spec than this one.
+        coeff = 0
+
+    return actor
 
 
 @attr.s(frozen=True, auto_attribs=True)

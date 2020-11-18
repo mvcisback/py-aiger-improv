@@ -21,6 +21,8 @@ py-aiger-coins = "^3.2.0"
 python-sat = {version = "0.1.6.*", allow-prereleases = true}
 py-aiger-sat = "^3"
 scipy = "^1.5.4"
+jax = "^0.2.5"
+jaxlib = "^0.1.57"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.0.2"
