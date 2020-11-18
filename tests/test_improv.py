@@ -70,10 +70,19 @@ def test_never_false1():
     with pytest.raises(ValueError):
         lprob([1, 1, 1, 1, 1, 1])
 
+    example = list(actor.sample())
+    assert -float('inf') < lprob(example)
+
+    ctrl = actor.policy()
+    example = []
+    for env in [None, 0, 0, 0]:
+        example.append(ctrl.send(env))
+    assert -float('inf') < lprob(example)
+
     actor = fit(model, 0.7)
     assert actor.sat_prob() == pytest.approx(0.7)
- 
 
+ 
 def test_never_false_redemption():
     spec = LTL.atom('x').historically()
     monitor = BV.aig2aigbv(spec.aig)

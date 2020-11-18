@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import random
 from functools import reduce
 from typing import Mapping, Sequence
 
@@ -15,6 +16,7 @@ from bdd2dfa.b2d import BNode
 from scipy.optimize import root_scalar
 
 from aiger_improv.model import Model, TIMED_NAME
+from aiger_improv.dist import Distribution
 
 
 def amap(func, collection) -> np.array:
@@ -137,6 +139,7 @@ class Improviser:
 
     def transition(self, state, action):
         curr_name = self.graph.nodes[state]['label']
+        action = self.model.mdd.io.var(curr_name).encode(action)
 
         if isinstance(curr_name, bool):
             return state  # Self loop on leaf.
@@ -144,30 +147,17 @@ class Improviser:
         assert state.node.var.startswith(curr_name)
         for kid in self.graph.neighbors(state):  # Find the transition.
             guard = self.graph.edges[state, kid]['label']
-            assert guard.inputs == {curr_name}
+            assert guard.inputs == {curr_name}            
 
             if guard({curr_name: action})[0]:
                 return kid
         raise ValueError("Invalid transition.")
-        
 
-    def prob(self, trc, log: bool = False) -> float:
-        sim, lprob, obs = self.sim(), 0, None 
-        for sym in trc:
-            (action_dist, curr_name), obs = sim.send(obs), sym
-
-            for guard, prob in action_dist:  # Linear scan for action.
-                if guard({curr_name: sym})[0]:
-                    #   ln[P(meta action) * P(action | meta action)]
-                    lprob += np.log(prob) - np.log(self.model.size(guard))
-
-        return lprob if log else np.exp(lprob)
-
-    def sim(self):
+    def run(self):
         state = self.root
+        measure = self.model.size
         for curr_name in self.model.order:
             state_name = self.graph.nodes[state]['label']
-
             # ----- Provide action distribution -----
             if curr_name != state_name:  # Uniformly select from valid.
                 dist = [(self.model.mdd.io.var(curr_name).valid, 1)]
@@ -176,9 +166,39 @@ class Improviser:
                 edges = (self.graph.edges[state, k] for k in kids)
                 dist = [(edge['label'], edge['prob']) for edge in edges]
 
-            action = yield (dist, curr_name)
+            var = self.model.mdd.io.var(curr_name)
+            action = yield Distribution(dist, measure, var)
             state = self.transition(state, action)
         raise ValueError("Action sent after episode ended.")
+  
+    def prob(self, trc, log: bool = False) -> float:
+        runner, lprob, obs = self.run(), 0, None 
+        for sym in trc:
+            action_dist, obs = runner.send(obs), sym
+            lprob += action_dist.logprob(sym)
+
+        return lprob if log else np.exp(lprob)
+
+    def sample(self, seed=None):
+        random.seed(seed)
+        runner, action = self.run(), None
+        for _ in self.model.order:
+            action_dist = runner.send(action)
+            action = action_dist.sample()
+            yield action
+
+    def policy(self, seed=None):
+        actions = self.model.actions
+        if actions == self.model.order:  # Deterministic Case.
+            yield from self.sample(seed)
+            return
+
+        random.seed(seed)
+        runner, env_action = self.run(), None
+        for _ in actions:
+            action_dist = runner.send(env_action)
+            action = action_dist.sample()
+            env_action = yield action
 
 
 __all__ = ['Improviser', 'improviser']
