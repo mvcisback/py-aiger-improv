@@ -137,6 +137,10 @@ class Improviser:
 
     def transition(self, state, action):
         curr_name = self.graph.nodes[state]['label']
+
+        if isinstance(curr_name, bool):
+            return state  # Self loop on leaf.
+
         assert state.node.var.startswith(curr_name)
         for kid in self.graph.neighbors(state):  # Find the transition.
             guard = self.graph.edges[state, kid]['label']
@@ -148,23 +152,33 @@ class Improviser:
         
 
     def prob(self, trc, log: bool = False) -> float:
-        if len(trc) > len(self.model.order):
-            raise ValueError("Trace too long.")
+        sim, lprob, obs = self.sim(), 0, None 
+        for sym in trc:
+            (action_dist, curr_name), obs = sim.send(obs), sym
 
-        state, lprob = self.root, 0
-        for curr_name, sym in zip(self.model.order, trc):
-            state_name = self.graph.nodes[state]['label']
-
-            if curr_name != state_name:  # Act Uniformly at Random.
-                valid = self.model.mdd.io.var(curr_name).valid
-                lprob -= np.log(self.model.size(valid))  # log(1/|valid|)
-                continue
-            
-            kid = self.transition(state, sym)
-            lprob += np.log(self.graph.edges[state, kid]['prob'])
-            state = kid
+            for guard, prob in action_dist:  # Linear scan for action.
+                if guard({curr_name: sym})[0]:
+                    #   ln[P(meta action) * P(action | meta action)]
+                    lprob += np.log(prob) - np.log(self.model.size(guard))
 
         return lprob if log else np.exp(lprob)
+
+    def sim(self):
+        state = self.root
+        for curr_name in self.model.order:
+            state_name = self.graph.nodes[state]['label']
+
+            # ----- Provide action distribution -----
+            if curr_name != state_name:  # Uniformly select from valid.
+                dist = [(self.model.mdd.io.var(curr_name).valid, 1)]
+            else:
+                kids = self.graph.neighbors(state)
+                edges = (self.graph.edges[state, k] for k in kids)
+                dist = [(edge['label'], edge['prob']) for edge in edges]
+
+            action = yield (dist, curr_name)
+            state = self.transition(state, action)
+        raise ValueError("Action sent after episode ended.")
 
 
 __all__ = ['Improviser', 'improviser']
