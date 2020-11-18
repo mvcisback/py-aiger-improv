@@ -166,8 +166,7 @@ class Improviser:
                 edges = (self.graph.edges[state, k] for k in kids)
                 dist = [(edge['label'], edge['prob']) for edge in edges]
 
-            var = self.model.mdd.io.var(curr_name)
-            action = yield Distribution(dist, measure, var)
+            action = yield Distribution(dist, model=self.model, name=curr_name)
             state = self.transition(state, action)
         raise ValueError("Action sent after episode ended.")
   

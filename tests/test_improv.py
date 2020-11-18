@@ -115,4 +115,13 @@ def test_never_false_redemption():
     vals = sorted(list(actor.node2val.values()))
     assert all(x == y for x, y in zip(vals, expected))
 
-    #assert actor.prob([]) == 1
+    def lprob(elems):
+        return actor.prob(elems, log=True)
+
+    assert lprob([]) == 0
+    assert lprob([1]) == pytest.approx(v3 - v1)
+
+    for prefix in [[1], [1, 0, 1], [1, 1, 1], [1, 1, 1, 1, 1]]:
+        for bit in [0, 1]:
+            expected = pytest.approx(-np.log(4) + bit * np.log(3))
+        assert lprob(prefix + [bit]) - lprob(prefix) == expected
