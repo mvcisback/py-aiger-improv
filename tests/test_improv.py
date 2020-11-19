@@ -137,6 +137,6 @@ def test_never_false_redemption():
 
     ctrl = actor.policy(observe_states=True)
     example = []
-    for env in [None, ({'x': 1}, None)]:
+    for env in [None, ({'x': 1}, None), ({'x': 1}, None)]:
         example.append(ctrl.send(env))
     assert -float('inf') < lprob(example)

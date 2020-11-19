@@ -187,6 +187,32 @@ class Improviser:
             yield action
 
     def policy(self, observe_states=False, seed=None):
+        ctrl_fact = self._policy_mdp if observe_states else self._policy_game
+        ctrl = ctrl_fact()
+
+        observation = None
+        while True:
+            action = ctrl.send(observation)
+            observation = yield action
+
+    def _policy_mdp(self, seed=None):
+        ctrl = self._policy_game(seed=seed)
+        state = self.model.dyn.latch2init
+        dyn_sim = self.model.dyn.simulator()
+        next(dyn_sim)
+
+        env_action = None
+        while True:
+            action = ctrl.send(env_action)
+            observation = yield action
+            env_action = self.model.find_coins(state, action, observation)
+            env_action = env_action[self.model.dyn.coins_id]
+            _, state  = dyn_sim.send({
+                fn.first(self.model.dyn.inputs): action, 
+                self.model.dyn.coins_id: env_action,
+            })
+
+    def _policy_game(self, observe_states=False, seed=None):
         actions = self.model.actions
         if actions == self.model.order:  # Deterministic Case.
             yield from self.sample(seed=seed)
@@ -194,28 +220,11 @@ class Improviser:
 
         random.seed(seed)
 
-        if observe_states:
-            state = self.model.dyn.latch2init
-            dyn_sim = self.model.dyn.simulator()
-            next(dyn_sim)
-
         runner, env_action = self.run(), None
         for _ in actions:
             action_dist = runner.send(env_action)
             action = action_dist.sample()
-
-            observation = yield action
-            if observe_states:
-                env_action = self.model.find_coins(state, action, observation)
-                env_action = env_action[self.model.dyn.coins_id]
-            else:
-                env_action = observation
-
-            if observe_states:
-                _, state  = dyn_sim.send({
-                    fn.first(self.model.dyn.inputs): action, 
-                    self.model.dyn.coins_id: env_action,
-                })
+            env_action = yield action
 
 
 __all__ = ['Improviser', 'improviser', 'fit']
