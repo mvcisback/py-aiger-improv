@@ -4,7 +4,6 @@ import re
 from functools import reduce
 from typing import Callable, Sequence, Optional
 
-
 import attr
 import mdd
 import numpy as np
@@ -18,8 +17,6 @@ from aiger_coins.pcirc import Distribution
 from aiger_discrete import FiniteFunc
 from aiger_discrete.mdd import to_mdd
 from mdd.nx import to_nx
-from pyrsistent import pmap
-from pyrsistent.typing import PMap
 
 
 import aiger_improv
@@ -41,6 +38,7 @@ class Model:
     preimage: Callable[[BV.UnsignedBVExpr], BV.UnsignedBVExpr]
     coin_biases: Callable[[str], Optional[Sequence[float]]]
     steps: int
+    dyn: Optional[C.PCirc] = None
 
     @property
     def true_sym(self):
@@ -88,7 +86,7 @@ class Model:
 
     @property
     def actions(self):
-        return [name for name in self.order if not self.is_random(name)]
+        return tuple(name for name in self.order if not self.is_random(name))
 
     def improviser(self, *, rationality=None, psat=None):
         if (rationality is not None) and (psat is not None):
@@ -96,6 +94,15 @@ class Model:
         if rationality is not None:
             return aiger_improv.improviser(self, rationality)
         return aiger_improv.fit(self, psat)
+
+    def find_coins(self, state, action, observation):
+        features, state2 = observation
+        action = {fn.first(self.dyn.inputs): action}
+        return C.infer.find_coins(
+            self.dyn,
+            inputs=action, outputs=features,
+            latchins=state, latchouts=state2,
+        )
 
 
 def onehot_gadget(output: str):
@@ -164,6 +171,7 @@ def from_pcirc(dyn: C.PCirc, monitor, steps: int):
         coin_biases=coin_biases,
         order=causal_order,
         steps=steps,
+        dyn=dyn,
     )
 
 

@@ -86,10 +86,13 @@ def test_never_false1():
 def test_never_false_redemption():
     spec = LTL.atom('x').historically()
     monitor = BV.aig2aigbv(spec.aig)
+    assert len(monitor.latches) == 1
+    monitor = monitor['l', {fn.first(monitor.latches): 'z'}]
 
     # Environment can save you.
     x, y = BV.uatom(1, 'x'), BV.uatom(1, 'y')
     xy = (x | y).with_output('x')  # env y can override x.
+
 
     dyn = C.pcirc(xy.aigbv) \
            .randomize({'y': {0: 0.75, 1: 0.25}})
@@ -125,3 +128,15 @@ def test_never_false_redemption():
         for bit in [0, 1]:
             expected = pytest.approx(-np.log(4) + bit * np.log(3))
         assert lprob(prefix + [bit]) - lprob(prefix) == expected
+
+    ctrl = actor.policy()
+    example = []
+    for env in [None, 0, 0]:
+        example.append(ctrl.send(env))
+    assert -float('inf') < lprob(example)
+
+    ctrl = actor.policy(observe_states=True)
+    example = []
+    for env in [None, ({'x': 1}, None)]:
+        example.append(ctrl.send(env))
+    assert -float('inf') < lprob(example)

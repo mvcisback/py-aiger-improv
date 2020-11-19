@@ -186,18 +186,36 @@ class Improviser:
             action = action_dist.sample()
             yield action
 
-    def policy(self, seed=None):
+    def policy(self, observe_states=False, seed=None):
         actions = self.model.actions
         if actions == self.model.order:  # Deterministic Case.
-            yield from self.sample(seed)
+            yield from self.sample(seed=seed)
             return
 
         random.seed(seed)
+
+        if observe_states:
+            state = self.model.dyn.latch2init
+            dyn_sim = self.model.dyn.simulator()
+            next(dyn_sim)
+
         runner, env_action = self.run(), None
         for _ in actions:
             action_dist = runner.send(env_action)
             action = action_dist.sample()
-            env_action = yield action
+
+            observation = yield action
+            if observe_states:
+                env_action = self.model.find_coins(state, action, observation)
+                env_action = env_action[self.model.dyn.coins_id]
+            else:
+                env_action = observation
+
+            if observe_states:
+                _, state  = dyn_sim.send({
+                    fn.first(self.model.dyn.inputs): action, 
+                    self.model.dyn.coins_id: env_action,
+                })
 
 
 __all__ = ['Improviser', 'improviser', 'fit']

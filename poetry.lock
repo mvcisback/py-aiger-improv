@@ -194,7 +194,7 @@ python-versions = "*"
 
 [[package]]
 name = "jax"
-version = "0.2.5"
+version = "0.2.6"
 description = "Differentiate, compile, and transform Numpy code."
 category = "main"
 optional = false
@@ -386,7 +386,7 @@ toposort = ">=1.5,<2.0"
 
 [[package]]
 name = "py-aiger-bdd"
-version = "3.0.1"
+version = "3.0.2"
 description = "Aiger to BDD bridge."
 category = "main"
 optional = false
@@ -428,7 +428,7 @@ py-aiger = ">=6.0.0,<7.0.0"
 
 [[package]]
 name = "py-aiger-coins"
-version = "3.2.0"
+version = "3.3.0"
 description = "Library for creating circuits that encode discrete distributions."
 category = "main"
 optional = false
@@ -599,7 +599,7 @@ testing = ["filelock"]
 
 [[package]]
 name = "python-sat"
-version = "0.1.6.dev9"
+version = "0.1.6.dev10"
 description = "A Python library for prototyping with SAT oracles"
 category = "main"
 optional = false
@@ -740,7 +740,7 @@ iniconfig = [
     {file = "iniconfig-1.1.1.tar.gz", hash = "sha256:bc3af051d7d14b2ee5ef9969666def0cd1a000e121eaea580d4a313df4b37f32"},
 ]
 jax = [
-    {file = "jax-0.2.5.tar.gz", hash = "sha256:383e0793196f73031131c334eea4a9d0d347a9cdd00fe0e97327957afbb99fce"},
+    {file = "jax-0.2.6.tar.gz", hash = "sha256:2d8810fee13db1783343aa2dd6989eccd05f91fead276e33cf51c611c7e63cea"},
 ]
 jaxlib = [
     {file = "jaxlib-0.1.57-cp36-none-macosx_10_9_x86_64.whl", hash = "sha256:47d4bf94f38ab9a437a69c19be6a3e1d235811d6da70922a3ff6502c33361504"},
@@ -844,8 +844,8 @@ py-aiger = [
     {file = "py_aiger-6.1.11-py3-none-any.whl", hash = "sha256:1c4000679ec05967d94d00e7f6fd0f673096ceb4fd5fab27ccf0052f65061b5d"},
 ]
 py-aiger-bdd = [
-    {file = "py-aiger-bdd-3.0.1.tar.gz", hash = "sha256:cdc3503c93843f9a5b15d01de6cec18748c463eb5ed3b47a444bedd71165a8f0"},
-    {file = "py_aiger_bdd-3.0.1-py3-none-any.whl", hash = "sha256:96e5d314379334a4099087fcce67072eb88c82d181708c297cf54258514d4236"},
+    {file = "py-aiger-bdd-3.0.2.tar.gz", hash = "sha256:bc74bef12de9d89479c3446feda347478c036e868ceccfefd9398c05f53d75b7"},
+    {file = "py_aiger_bdd-3.0.2-py3-none-any.whl", hash = "sha256:1d04acd2aa14bc9cbf1f15cb752888b698bf6b5fe94c259907d313ca860a60e0"},
 ]
 py-aiger-bv = [
     {file = "py-aiger-bv-4.5.1.tar.gz", hash = "sha256:5b0d3533f9ea83f94e65bd7962c653c633b3b56d5b6092d5b0208df14c3eb15c"},
@@ -856,8 +856,8 @@ py-aiger-cnf = [
     {file = "py_aiger_cnf-5.0.1-py3-none-any.whl", hash = "sha256:bdbc46b548ae8f1b496e4fef2d911c0c8e2ce1fb793db89ce96be43840e0051e"},
 ]
 py-aiger-coins = [
-    {file = "py-aiger-coins-3.2.0.tar.gz", hash = "sha256:fc4e5d1edd851a2b9f708fd07c0728714cff3af8e0c87e4c18138bc2ae1d1b05"},
-    {file = "py_aiger_coins-3.2.0-py3-none-any.whl", hash = "sha256:6871e8cb90a28f7e7b29edce9c41b185147f2fe9630f7285aad2467813360c89"},
+    {file = "py-aiger-coins-3.3.0.tar.gz", hash = "sha256:f596b05640c376ee7abf50b3127eff45aaa38765892584428893bbd142058136"},
+    {file = "py_aiger_coins-3.3.0-py3-none-any.whl", hash = "sha256:0672cf1254a9c49ca1ae6377d5e40aeb904663ecfb3a721e74cc5bb39df23214"},
 ]
 py-aiger-discrete = [
     {file = "py-aiger-discrete-0.1.6.tar.gz", hash = "sha256:c1ad980c1577dd8001041a4c8ccba28b57dafd0c589ff509374a1a723915f2d4"},
@@ -907,34 +907,33 @@ pytest-xdist = [
     {file = "pytest_xdist-2.1.0-py3-none-any.whl", hash = "sha256:7c629016b3bb006b88ac68e2b31551e7becf173c76b977768848e2bbed594d90"},
 ]
 python-sat = [
-    {file = "python-sat-0.1.6.dev9.tar.gz", hash = "sha256:e7ab6049709262f4b2b04812ef5dd79277c9cebf78ebea5aca5cb1e51940f760"},
-    {file = "python_sat-0.1.6.dev9-cp27-cp27m-macosx_10_15_x86_64.whl", hash = "sha256:bc50c221fd4f708a814a25e93448cadc59c881da9834c2d990cea2d6adb42114"},
-    {file = "python_sat-0.1.6.dev9-cp27-cp27m-manylinux1_i686.whl", hash = "sha256:8b1859487f46512de93628c3f5b6563ab420faffc8cf278713a51b028c7764e9"},
-    {file = "python_sat-0.1.6.dev9-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:bc8ed656c1c717090199c90646f7579d470f63800b4fdd133bf10b31cdb1f1d0"},
-    {file = "python_sat-0.1.6.dev9-cp27-cp27m-manylinux2010_x86_64.whl", hash = "sha256:3b11e36c270d3fa2d5abc7819a092aea19ff0b7e167a208aad20cca2a6139980"},
-    {file = "python_sat-0.1.6.dev9-cp27-cp27mu-manylinux1_i686.whl", hash = "sha256:7a31aa47ea9c1ba36f5f647dde7a7171e429ed8d30cf74b3e1bd70b1bae5a300"},
-    {file = "python_sat-0.1.6.dev9-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:af017720a6a488e850e5d059ffde83f93e6949fd6185ee9f6e76302f56ff7d1b"},
-    {file = "python_sat-0.1.6.dev9-cp27-cp27mu-manylinux2010_x86_64.whl", hash = "sha256:ae0752155ad056e102ffe460b0e7de2b90a5ea591be54e04ffa2ab88a146a73b"},
-    {file = "python_sat-0.1.6.dev9-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:311f14e670d9aa86af5f5340a3aad32f58ab53a1040ba8a9b7371f8e42ebaf31"},
-    {file = "python_sat-0.1.6.dev9-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:f3e63b3caf46e4234e04e3581918fe391d1d81b5d25a9b5526265fdb98c73a96"},
-    {file = "python_sat-0.1.6.dev9-cp35-cp35m-manylinux2010_x86_64.whl", hash = "sha256:402e68fc337d6f4d8409d51c27866a054249e2733206d8c1ca5c4440f743ae56"},
-    {file = "python_sat-0.1.6.dev9-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:a8b5aa9905ca3d6a05458fb426b6be00a6d164cdafb946e9797436c7e019fd58"},
-    {file = "python_sat-0.1.6.dev9-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:f760751e5e6322ba08d0c402c05f9695bc53ab1ee7d8a5ff6ec70816a26405fe"},
-    {file = "python_sat-0.1.6.dev9-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:69d79d827ae4d43354830ba9864acc655a21038bfca2e4f0c9ab76913f7ad46e"},
-    {file = "python_sat-0.1.6.dev9-cp36-cp36m-win_amd64.whl", hash = "sha256:121f1626d743a7a64d380d542ef29a40ef537a3b1e4c8225413fa3f1be70adab"},
-    {file = "python_sat-0.1.6.dev9-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:3f9f726ed9ff41b5da7cbda0b7268af3aa677fd76c666015d42fabfc0945b97f"},
-    {file = "python_sat-0.1.6.dev9-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:7dfb7b2584243f99120c52f48e0ae137bc1a53cf1af69e9759387f5a9aa6bccd"},
-    {file = "python_sat-0.1.6.dev9-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:295cc6568a1e074c44d1b7a33e074b8ad93400f1486622eeeb7fb78aea02e8d8"},
-    {file = "python_sat-0.1.6.dev9-cp37-cp37m-win_amd64.whl", hash = "sha256:d8792d9b3a25ab4473c97c091e4c8ad197b613359cb4dcd6c241b3f39524ab9c"},
-    {file = "python_sat-0.1.6.dev9-cp38-cp38-macosx_10_15_x86_64.whl", hash = "sha256:b61cbdb9f48b2ef7e25cc52ba55eebebedbe1c456835afb2a211d70a5019b99d"},
-    {file = "python_sat-0.1.6.dev9-cp38-cp38-manylinux1_i686.whl", hash = "sha256:1bd3c023e833638ff57db2214ca25c2725cbb950d062a93f5d313731d313fffa"},
-    {file = "python_sat-0.1.6.dev9-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:9b202efd490de404d8e2ad6d0a6d955982da5427d95c50648364f933fa68ad64"},
-    {file = "python_sat-0.1.6.dev9-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:7ad05575a0bc8451cb81e85f29223a993625c096434fa853d3d55b72e7123dd9"},
-    {file = "python_sat-0.1.6.dev9-cp38-cp38-win_amd64.whl", hash = "sha256:6537f0d65ce5d29a2a3e6438a02a184f2cc358f6402e9ad77b24816cefc62460"},
-    {file = "python_sat-0.1.6.dev9-cp39-cp39-macosx_10_15_x86_64.whl", hash = "sha256:a7b2436153ed63f989cc3cc1c2c37f1ad4424c173ef07cb27d7be56a7c32e0bc"},
-    {file = "python_sat-0.1.6.dev9-cp39-cp39-manylinux1_i686.whl", hash = "sha256:243aad930f09a2c4680c6187e9d3d16738113114648ca73a6d33944f2fb74af9"},
-    {file = "python_sat-0.1.6.dev9-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:f42b6c4e78be8451854eed706909dbafd94a7561c74e425985648b298a620bd4"},
-    {file = "python_sat-0.1.6.dev9-cp39-cp39-manylinux2010_x86_64.whl", hash = "sha256:1ad1e666fa7332133a86cf18fe6c1aa1948c114077bdcbdb6263fea98eafbe64"},
+    {file = "python-sat-0.1.6.dev10.tar.gz", hash = "sha256:e8d1e137b11acc167dac6c2b0e0bd9d5f1d5d9a7a993e31cf02a5d1b29ee4d43"},
+    {file = "python_sat-0.1.6.dev10-cp27-cp27m-manylinux1_i686.whl", hash = "sha256:562b4c9e5be5302458c1f5f6fd9a6232b1d57ed496dcfde3856e4b4e5efe675f"},
+    {file = "python_sat-0.1.6.dev10-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:6e3edaaa621cea0d540179157d33b24bf25154b8dc412c1e00343fd77762a3c2"},
+    {file = "python_sat-0.1.6.dev10-cp27-cp27m-manylinux2010_x86_64.whl", hash = "sha256:bf030ee9771fc880a08f96526b4223d4c3b5444f58f4485d9913ba7fd504b95a"},
+    {file = "python_sat-0.1.6.dev10-cp27-cp27mu-manylinux1_i686.whl", hash = "sha256:7c0e191be753c67f6ccb209e0e71ef5e879233b02c4c6099391cd8133d140be5"},
+    {file = "python_sat-0.1.6.dev10-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:f7c1e6384b4965a8021257e4d8cfbd1d4b722a50a49d1e3854a30c6a774beae0"},
+    {file = "python_sat-0.1.6.dev10-cp27-cp27mu-manylinux2010_x86_64.whl", hash = "sha256:a2024a22cad611a51ae3c0598e0a29f28657fb921074d6f86864a29030166a54"},
+    {file = "python_sat-0.1.6.dev10-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:aadb856d52a8c7086eca37f15877cd2b1cc770ba4359630627372e58047fe523"},
+    {file = "python_sat-0.1.6.dev10-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:9941ae0fc39f2c0cc0939c264e766bee209130dea809cd7f32a17fffd12abc3b"},
+    {file = "python_sat-0.1.6.dev10-cp35-cp35m-manylinux2010_x86_64.whl", hash = "sha256:0b6de6059bfed60e4e9a2e2351d88f78f4d7137c8bfe7e46191b4aa03d6b896a"},
+    {file = "python_sat-0.1.6.dev10-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:b63cc77b212f3c9c43f9e10c7389b9257e010a8c7e2855486389e1cb001bc5de"},
+    {file = "python_sat-0.1.6.dev10-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:ae0a8ff4c13d865a03b2d39076e7d514e4139d481182bd8a04e468de3ec3ec4e"},
+    {file = "python_sat-0.1.6.dev10-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:e8a540f46bfd63713033944226727cd8db92847b399957be525eda5c29bdbe31"},
+    {file = "python_sat-0.1.6.dev10-cp36-cp36m-win_amd64.whl", hash = "sha256:d1cbc08ebf2bed480073af8de15c2b3b578d6b6ff3574b441102030dd4accd11"},
+    {file = "python_sat-0.1.6.dev10-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:3685fb6dc5ff622d75d3b26bbe07a9d286b22265b47f958e6366eb2c386b0b19"},
+    {file = "python_sat-0.1.6.dev10-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:c9eba75d0af0cba8239cabbadd8ecf8b2dc27bbd75dcbca53dc44739b8848238"},
+    {file = "python_sat-0.1.6.dev10-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:749372de552b5bc750528a5b9b9b0e778313c0c8843bdc784bb5535bc463a3e6"},
+    {file = "python_sat-0.1.6.dev10-cp37-cp37m-win_amd64.whl", hash = "sha256:b3699cb3291dfa168e58d20627496b472c8ee1ddb2b7d307bb8123bcec29093d"},
+    {file = "python_sat-0.1.6.dev10-cp38-cp38-macosx_10_15_x86_64.whl", hash = "sha256:a84d0bb2164e089740e60d1051217c9af881c6d731063250223beee3ad4809b6"},
+    {file = "python_sat-0.1.6.dev10-cp38-cp38-manylinux1_i686.whl", hash = "sha256:08d14b52299deaa8126cf1e733cf4f7699012093785efb63970623998e32ff77"},
+    {file = "python_sat-0.1.6.dev10-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:3ae680783ea9a43d25498f3ed859291cf4afdf1ff23477114c769d830a9a0e86"},
+    {file = "python_sat-0.1.6.dev10-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:7dc7d80d12d6dc354c72933fd530a2d031e70deca12c7c7d9a2db4223c74712f"},
+    {file = "python_sat-0.1.6.dev10-cp38-cp38-win_amd64.whl", hash = "sha256:2246946aa2888e1aa49ad50333bfa9f0e84b02b81f16a7f886099192b7fae534"},
+    {file = "python_sat-0.1.6.dev10-cp39-cp39-macosx_10_15_x86_64.whl", hash = "sha256:d8397ec64c2cc7ce18ff28968c974c75960647e098b03ef0db2fa32b77f14abd"},
+    {file = "python_sat-0.1.6.dev10-cp39-cp39-manylinux1_i686.whl", hash = "sha256:b58102a80e3867ba99c830cbb688d417e955ee2e6a36f501e832826010ef420e"},
+    {file = "python_sat-0.1.6.dev10-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:b49eb3081b6e4e11455867620671959a5bae9a5f250862af8d9bfd82f198aa16"},
+    {file = "python_sat-0.1.6.dev10-cp39-cp39-manylinux2010_x86_64.whl", hash = "sha256:f33eb77b806696b5b31a2f33ecc72d2bf56f8c9021bca4ec6fd53ab3d73d73cc"},
 ]
 scipy = [
     {file = "scipy-1.5.4-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:4f12d13ffbc16e988fa40809cbbd7a8b45bc05ff6ea0ba8e3e41f6f4db3a9e47"},
